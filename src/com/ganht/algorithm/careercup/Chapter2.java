@@ -1,6 +1,5 @@
 package com.ganht.algorithm.careercup;
 
-import java.util.Hashtable;
 
 public class Chapter2 {
 	
@@ -106,6 +105,52 @@ public class Chapter2 {
 		}
 		
 		return p1;
+	}
+	
+	/**
+	 * You have two numbers represented by a linked list, where each node contains a sin- gle
+	 *  digit The digits are stored in reverse order, such that the 1’s digit is at the head of 
+	 *  the list Write a function that adds the two numbers and returns the sum as a linked list
+		EXAMPLE
+		Input: (3 -> 1 -> 5) + (5 -> 9 -> 2)
+		Output: 8 -> 0 -> 8
+	 */
+	public int addLinkedNumbers(Node a,Node b,int carry){
+		
+		//The first solution is to iterate the list,and obtain the results one digit by one.
+//		int tempCarry=0;
+//		int result=0;
+//		int digit=0;
+//		
+//		while(a!=null||b!=null){
+//			
+//			result=(10^digit)*(((a==null?0:a.data)+(b==null?0:b.data)+tempCarry)%10);
+//			tempCarry=((a==null?0:a.data)+(b==null?0:b.data)+tempCarry)/10;
+//			
+//			digit++;
+//			a=a.next;
+//			b=b.next;
+//		}
+//		
+//		return result;
+		//The second solution implements this recursively.
+		
+	}
+	
+	/**
+	 *  Given a circular linked list, implement an algorithm which returns node at the 
+	 *  beginning of the loop.
+		DEFINITION:
+		Circular linked list: A (corrupt) linked list in which a node’s next 
+		pointer points to an earlier node, so as to make a loop in the linked 
+		list.
+		EXAMPLE:
+		input: A -> B -> C -> D -> E -> C [the same C as earlier].
+		output: C
+	 * @return
+	 */
+	public Node findBeginningInCircularList(){
+		
 	}
 	
 }
