@@ -134,7 +134,7 @@ public class Chapter2 {
 //		
 //		return result;
 		//The second solution implements this recursively.
-		
+		return 0;
 	}
 	
 	/**
@@ -149,8 +149,34 @@ public class Chapter2 {
 		output: C
 	 * @return
 	 */
-	public Node findBeginningInCircularList(){
+	public Node findBeginningInCircularList(Node head){
+		/**
+		 * 解决办法是个数学问题。如果a和b在跑圈，a的速度是b的2倍。他们一起开始跑，下次相遇是在哪里？
+		 * 这个问题不要把时间和速度扯进来，那就复杂了。假设相遇 的时候b走了x距离，那么a就走了2x距离。
+		 * a比b快，所以相遇的时候就是a压了b一圈，即a多跑了一圈的距离。所以有2x-x=n,所以x=n，即
+		 * 刚好在b跑完一圈后相遇 。
+		 * 回到现在这个问题，差别就是在跑圈前多走了k步的距离。因为b在刚进入循环圈的时候，即走了k的时候，
+		 * a已经走了2k，即在圈里走了k步。所以上述公式调整为2x+k-x=n，所以x=n-k，即在离起点还差
+		 * k步的时候相遇，所以只要模仿这个过程，找到一快一慢两个结点的相遇点，再把一个移到头部，继续一起
+		 * 移动直到相遇即为答案。
+		 */
+		Node n1=head;
+		Node n2=head;
 		
+		while(n2.next!=null){
+			n1=n1.next;
+			n2=n2.next.next;
+			if(n1==n2)
+				break;
+		}
+		
+		n1=head;
+		while(n1!=n2){
+			n1=n1.next;
+			n2=n2.next;
+		}
+		
+		return n2;
 	}
 	
 }
