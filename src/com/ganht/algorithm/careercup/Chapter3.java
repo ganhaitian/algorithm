@@ -47,16 +47,27 @@ public class Chapter3 {
 	 * should be used to write this program: push | pop | peek | isEmpty
 	 * @param args
 	 */
-	 public void sortStack(){
-		 
+	 public static Stack<Integer> sortStack(Stack<Integer> input){
+		 Stack<Integer> data=new Stack<Integer>();
+		 while(!input.isEmpty()){
+			 int tmp=input.pop();
+			 while(!data.isEmpty()&&data.peek()>tmp){
+				 input.push(data.pop());
+			 }
+			 data.push(tmp);
+		 }
+		 return data;
 	 }
 	
 	public static void main(String[] args){
-		MyQueue myQ=new Chapter3().new MyQueue();
-		myQ.offer(5);myQ.offer(3);myQ.offer(10);myQ.offer(1);
-		while(myQ.size()>0){
-			System.out.println(myQ.poll());
-		}
+//		MyQueue myQ=new Chapter3().new MyQueue();
+//		myQ.offer(5);myQ.offer(3);myQ.offer(10);myQ.offer(1);
+//		while(myQ.size()>0){
+//			System.out.println(myQ.poll());
+//		}
+		Stack<Integer> input=new Stack<Integer>();
+		input.push(5);input.push(4);input.push(3);input.push(2);input.push(1);
+		System.out.println(sortStack(input));
 	}
 	
 }
