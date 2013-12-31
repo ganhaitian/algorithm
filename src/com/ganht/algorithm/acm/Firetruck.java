@@ -199,7 +199,7 @@ public class Firetruck {
 	}
 	
 	public static void main(String[] args){
-		new Firetruck().genMap(new File("/firetruck.input"));
+		new Firetruck().genMap(new File(Firetruck.class.getClassLoader().getResource("/firetruck.inpu").getPath()));
 	}
 	
 	
