@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 /*
- * A Firetruck
+ * A Fire truck
 	
 	The Center City fire department collaborates with the transportation department to maintain
 	maps of the city which reflects the current status of the city streets. On any given day, several
@@ -24,12 +24,15 @@ import java.util.List;
 	The city has a separate map for each fire district. Street corners of each map are identified by
 	positive integers less than 21, with the fire station always on corner #1. The input file contains
 	several test cases representing different fires in different districts.
+	
 		• The first line of a test case consists of a single integer which is the number of the street corner
 		closest to the fire.
+		
 		• The next several lines consist of pairs of positive integers separated by blanks which are
 		the adjacent street corners of open streets. (For example, if the pair 4 7 is on a line in the
 		file, then the street between street corners 4 and 7 is open. There are no other street corners
 		between 4 and 7 on that section of the street.)
+		
 		• The final line of each test case consists of a pair of 0’s.
 		
 	Output
