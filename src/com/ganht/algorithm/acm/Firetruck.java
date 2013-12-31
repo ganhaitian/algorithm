@@ -117,6 +117,10 @@ public class Firetruck {
 		public String toString(){
 			return String.valueOf(id);
 		}
+		
+		public void sortSiblings(){
+			Collections.sort(this.siblingCorners);
+		}
 	}
 	
 	public void genMap(File file){
