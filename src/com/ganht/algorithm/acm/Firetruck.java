@@ -97,17 +97,25 @@ public class Firetruck {
 			this.siblingCorners.add(_corner);
 		}
 		
-		public boolean equals(StreetCorner target){
+		public boolean equals(Object target){
 			if(target instanceof StreetCorner && 
 			 ((StreetCorner)target).id == this.id){
 				return true;
 			}else
 				return false;
 		}
+		
+		public int hashCode(){
+			return new Integer(id).hashCode();
+		}
 
 		@Override
 		public int compareTo(StreetCorner o) {
 			return this.id - o.id;
+		}
+		
+		public String toString(){
+			return String.valueOf(id);
 		}
 	}
 	
@@ -118,12 +126,15 @@ public class Firetruck {
 			BufferedReader bReader = new BufferedReader(reader);
 			
 			int targetFirePosition = 0;
+			int caseCount = 0;
 			List<String> siblingsInfos = new ArrayList<String>();
 			
 			String line = bReader.readLine();
 			while(line!=null){
+				line = line.trim();
 				if(!line.contains(" ")){
 					targetFirePosition = Integer.parseInt(line);
+					System.out.println("CASE "+(++caseCount));
 				}else if(line.equals("0 0")){
 					genMap(targetFirePosition,siblingsInfos);
 					targetFirePosition = 0;
@@ -131,6 +142,7 @@ public class Firetruck {
 				}else if(line.contains(" ")){
 					siblingsInfos.add(line);
 				}
+				line = bReader.readLine();
 			}
 			
 			bReader.close();
@@ -151,55 +163,77 @@ public class Firetruck {
 			StreetCorner B = new StreetCorner(Integer.parseInt(siblings[1]));
 			
 			if(allCorners.contains(A)){
-				A.addSiblingCorners(B);
+				A = allCorners.get(allCorners.indexOf(A));
 			}else{
 				allCorners.add(A);
 			}
 			
 			if(allCorners.contains(B)){
-				B.addSiblingCorners(A);
+				B = allCorners.get(allCorners.indexOf(B));
 			}else{
 				allCorners.add(B);
 			}
+			
+			A.addSiblingCorners(B);
+			B.addSiblingCorners(A);
+			
 		}
 		
 		//Sort it.
 		Collections.sort(allCorners);
 		
-		genMap(allCorners.get(0),new ArrayList<StreetCorner>(),targetFirePosition);
+		List<StreetCorner> touchedCorners = new ArrayList<StreetCorner>();
+		touchedCorners.add(allCorners.get(0));
 		
+		//Get the result.
+		int routesNum = genMap(allCorners.get(0),touchedCorners,targetFirePosition);
+		
+		System.out.println(String.format(
+			"There are %d routes from the firestation to streetcorner %d",
+			routesNum,targetFirePosition)
+		);
 	}
 
-	private void genMap(StreetCorner head,
-			ArrayList<StreetCorner> touchedCorners,
+	private int genMap(StreetCorner head,
+			List<StreetCorner> touchedCorners,
 			int target) {
 		
 		if(head == null)
-			return;
+			return -1;
 	
 		List<StreetCorner> siblings = head.siblingCorners;
+		int routesNum = 0;
 		
 		for(StreetCorner sibling:siblings){
 			if(sibling.id == target){
-				touchedCorners.add(new StreetCorner(target));
+				StreetCorner targetCorner = new StreetCorner(target);
+				touchedCorners.add(targetCorner);
 				print(touchedCorners);
+				touchedCorners.remove(targetCorner);
+				routesNum ++;
 			}else{
-				if(touchedCorners.contains(sibling)){
+				if(!touchedCorners.contains(sibling)){
 					touchedCorners.add(sibling);
-					genMap(sibling,touchedCorners,target);
+					routesNum += genMap(sibling,touchedCorners,target);
 					touchedCorners.remove(sibling);
 				}
 			}
 		}
 		
+		return routesNum;
 	}
 
-	private void print(ArrayList<StreetCorner> touchedCorners) {
+	private void print(List<StreetCorner> touchedCorners) {
 		System.out.println(touchedCorners);
 	}
 	
 	public static void main(String[] args){
-		new Firetruck().genMap(new File(Firetruck.class.getClassLoader().getResource("/firetruck.inpu").getPath()));
+		new Firetruck().genMap(
+			new File(
+				Firetruck.class.getClassLoader().
+				getResource("firetruck.input").
+				getPath()
+		));
 	}
 	
 	
