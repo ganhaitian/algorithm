@@ -1,6 +1,9 @@
 package com.ganht.algorithm.codejam;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.TreeSet;
 
 /*** 
@@ -82,27 +85,29 @@ public class StoreCredit extends CodeJamCase{
 	private void calculate(int caseIndex,String[] caseContent){
 		
 		int target = Integer.parseInt(caseContent[0]);
-		TreeSet<Integer> itemsByPriceOrder = new TreeSet<Integer>();
+		List<Integer> itemsByPriceOrder = new ArrayList<Integer>();
 		int itemNumber = Integer.parseInt(caseContent[1]);
 		int tmpItemPrice = 0;
+		List<Integer> originArray = new ArrayList<Integer>();
 		
 		for(String item:caseContent[2].split(" ")){
 			tmpItemPrice = Integer.parseInt(item);
+			originArray.add(tmpItemPrice);
 			if(tmpItemPrice >= target)
 				continue;
 			else{
 				itemsByPriceOrder.add(tmpItemPrice);
 			}
 		}
-		
+		Collections.sort(itemsByPriceOrder);
 		int i = 0;
 		int j = itemsByPriceOrder.size() - 1;
 		Integer[] items = new Integer[itemNumber];
 		itemsByPriceOrder.toArray(items);
 		
-		while(i < j){
+		while(i < j){	
 			if(items[i] + items [j] == target){
-				System.out.println(String.format("Case #%d: %d %d",caseIndex,i,j));
+				System.out.println(findPoistion(items[i],items[j],caseIndex,originArray));
 				break;
 			}else if(items[i] + items[j] < target)
 				i++;
@@ -112,6 +117,15 @@ public class StoreCredit extends CodeJamCase{
 		}
 	}
 	
+	private String findPoistion(Integer a,Integer b,int caseIndex, List<Integer> originArray) {
+		int positionA = originArray.indexOf(a) + 1;
+		int positionB = originArray.lastIndexOf(b) + 1;
+		if(positionA > positionB)
+			return String.format("Case #%d: %d %d",caseIndex,positionB,positionA);
+		else
+			return String.format("Case #%d: %d %d",caseIndex,positionA,positionB);
+	}
+
 	@Override
 	protected void runCase() {
 		parseInput(new File("G:\\dep\\A-small-practice.in"),new InputCaseLineParser(){
