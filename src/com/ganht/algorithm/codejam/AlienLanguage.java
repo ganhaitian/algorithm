@@ -1,5 +1,7 @@
 package com.ganht.algorithm.codejam;
 
+import java.io.File;
+
 /**
  * 
 	After years of study, scientists at Google Labs have discovered an alien language transmitted 
@@ -73,9 +75,18 @@ package com.ganht.algorithm.codejam;
  */
 public class AlienLanguage extends CodeJamCase {
 
+	
+	
 	@Override
 	protected void runCase() {
-		
+		parseInput(new File(""),new InputCaseLineParser() {
+			@Override
+			public void parseLine(int lineNumber, String line) {
+				if(lineNumber == 1){
+					
+				}
+			}
+		});
 	}
 
 }

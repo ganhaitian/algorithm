@@ -128,7 +128,7 @@ public class StoreCredit extends CodeJamCase{
 
 	@Override
 	protected void runCase() {
-		parseInput(new File("G:\\dep\\A-small-practice.in"),new InputCaseLineParser(){
+		parseInput(new File("G:\\dep\\A-small-practice.in"),new InputCaseBlockParser(){
 			
 			public void parseLine(int caseIndex,String[] caseContent) {
 				calculate(caseIndex,caseContent);

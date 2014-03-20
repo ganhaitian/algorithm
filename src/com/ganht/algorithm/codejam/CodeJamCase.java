@@ -11,7 +11,23 @@ public abstract class CodeJamCase {
 	protected void parseInput(File file,InputCaseLineParser lineParser){
 		try {
 			BufferedReader bufferReader = new BufferedReader(new FileReader(file));
-			String[] caseContent = new String[lineParser.getCaseLineNumber()];
+			String line = bufferReader.readLine();
+			int lineNumber = 0;
+			
+			while(line != null){
+				lineParser.parseLine(++lineNumber, line);
+				line = bufferReader.readLine();
+			}
+			bufferReader.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	protected void parseInput(File file,InputCaseBlockParser blockParser){
+		try {
+			BufferedReader bufferReader = new BufferedReader(new FileReader(file));
+			String[] caseContent = new String[blockParser.getCaseLineNumber()];
 			int lineCount = 0;
 			int tmpIndex  = 0;
 			int caseIndex = 0;
@@ -19,13 +35,13 @@ public abstract class CodeJamCase {
 			String line = bufferReader.readLine();
 			
 			while(line != null){
-				tmpIndex = (++lineCount)%lineParser.getCaseLineNumber() ;
+				tmpIndex = (++lineCount)%blockParser.getCaseLineNumber() ;
 				if(tmpIndex == 0){
 					tmpIndex = 3;
 				}
 				caseContent[tmpIndex-1] = line;
 				if(tmpIndex == 3){
-					lineParser.parseLine(++caseIndex,caseContent);
+					blockParser.parseLine(++caseIndex,caseContent);
 				}
 				line = bufferReader.readLine();
 			}

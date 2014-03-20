@@ -130,7 +130,7 @@ public class ScalarProduct extends CodeJamCase {
 	
 	@Override
 	protected void runCase() {
-		parseInput(new File("G:\\dep\\minimum-scalar-product.in"), new InputCaseLineParser() {
+		parseInput(new File("G:\\dep\\minimum-scalar-product.in"), new InputCaseBlockParser() {
 			
 			@Override
 			public void parseLine(int caseIndex, String[] line) {
