@@ -1,6 +1,9 @@
 package com.ganht.algorithm.codejam;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * 
@@ -74,19 +77,69 @@ import java.io.File;
  *
  */
 public class AlienLanguage extends CodeJamCase {
+	
+	private int L = 0;
+	private int D = 0;
+	private int N = 0;
+	private List<String> words = new ArrayList<String>();
+	private int caseIndex = 0;
+	
+	private void runAlgorithm(int lineNumber,String line){
+		
+		if(lineNumber == 1){
+			String[] languageInfos = line.split(" ");
+			L = Integer.parseInt(languageInfos[0]);
+			D = Integer.parseInt(languageInfos[1]);
+			N = Integer.parseInt(languageInfos[2]);		
+		}else if(lineNumber <= (D+1)){
+			words.add(line);
+		}else{
+			List<String> tmpWords = new ArrayList<String>();
+			tmpWords.addAll(words);
+			String caseContent = line;
+			int partNumber = 0;
+			
+			for(String subPart:caseContent.split("\\(|\\)")){
+				if(tmpWords.size() == 0)
+					break;
+				if(subPart == null || subPart.trim().length() == 0)
+					continue;
+				if(caseContent.indexOf("("+subPart+")") >= 0)
+					filterWords(partNumber++,subPart,tmpWords);
+				else{
+					for(char c:subPart.toCharArray()){
+						if(tmpWords.size() == 0)
+							break;
+						filterWords(partNumber++,String.valueOf(c),tmpWords);
+					}
+				}
+			}
+			
+			System.out.println(String.format("Case #%d: %d",++caseIndex,tmpWords.size()));
+			tmpWords.clear();
+		}
+		
+	}
+	
+	private void filterWords(int i,String part,List<String> tmpWords) {
+		for(Iterator<String> iter = tmpWords.iterator();iter.hasNext();){
+			String word = iter.next();
+			if(part.indexOf(word.charAt(i)) < 0)
+				iter.remove();
+		}
+	}
 
-	
-	
 	@Override
 	protected void runCase() {
-		parseInput(new File(""),new InputCaseLineParser() {
+		parseInput(new File("G:\\dep\\allien-language-largin.in"),new InputCaseLineParser() {
 			@Override
 			public void parseLine(int lineNumber, String line) {
-				if(lineNumber == 1){
-					
-				}
+				runAlgorithm(lineNumber,line);
 			}
 		});
 	}
 
+	public static void main(String[] args){
+		new AlienLanguage().runCase();
+	}
 }
