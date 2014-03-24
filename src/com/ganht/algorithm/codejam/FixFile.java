@@ -130,6 +130,10 @@ public class FixFile extends CodeJamCase {
 			return childNodes;
 		}
 
+		public void clearChildren(){
+			this.getChildren().clear();
+		}
+		
 		public PathNode searchChild(String pathPart) {
 			for(PathNode pathNode:childNodes){
 				if(pathNode.getDirName().equals(pathPart))
@@ -143,33 +147,39 @@ public class FixFile extends CodeJamCase {
 		if(lineNumber == 1){
 			caseNumber = Integer.parseInt(line);
 		}else{
+			
 			if(caseEndLineNumber == 0){
 				String[] caseInfos = line.split(" ");
 				existPathIndex = Integer.parseInt(caseInfos[0]);
 				createPathIndex = Integer.parseInt(caseInfos[1]);
 				caseEndLineNumber = lineNumber + existPathIndex + createPathIndex;
-			}
-			
-			if(existPathIndex-- > 0){
-				constructPath(line);
-			}
-			
-			if(createPathIndex-- > 0){
-				createTimes += constructPath(line);
 			}else{
-				System.out.println(String.format("Case #%d: %d",++caseIndex,createTimes));
-				createTimes = 0;
-				caseEndLineNumber = 0;
+				if(existPathIndex-- > 0){
+					constructPath(line);
+				}else{
+					if(createPathIndex-- > 0){
+						createTimes += constructPath(line);
+					}
+					
+					if(createPathIndex == 0){
+						System.out.println(String.format("Case #%d: %d",++caseIndex,createTimes));
+						createTimes = 0;
+						caseEndLineNumber = 0;
+						root.clearChildren();
+					}
+				}
 			}
 			
 		}
 	}
 	
 	private int constructPath(String line) {
-		List<String> pathParts = Arrays.asList(line.split("//"));
+		List<String> pathParts = Arrays.asList(line.split("/"));
 		PathNode tmpPathNode = root;
 		int createTimes = 0;
 		for(String pathPart:pathParts){
+			if(pathPart == null || pathPart.length() == 0)
+				continue;
 			if(root.getChildren().size() == 0){
 				tmpPathNode = new PathNode(pathPart);
 				root.addChild(tmpPathNode);
@@ -196,7 +206,7 @@ public class FixFile extends CodeJamCase {
 	
 	@Override
 	protected void runCase() {
-		parseInput(new File("G:\\dep\\code-jam-case\\fix-file-small.in"),new InputCaseLineParser() {
+		parseInput(new File("G:\\dep\\code-jam-case\\fix-file-large.in"),new InputCaseLineParser() {
 			@Override
 			public void parseLine(int lineNumber, String line) {
 				runAlgorithm(lineNumber,line);
