@@ -129,10 +129,22 @@ public class RopeIntranet extends CodeJamCase {
 				Collections.sort(wires);
 				Collections.sort(rightPoints);
 				
-				for(int index = 0;index < wires.size() ; index++){
-					Wire wire = wires.get(index);
-					int smallerPoints = rightPoints.indexOf(wire.right);
-					intersections += Math.min(wires.size() - (index + 1), smallerPoints);
+				if(wires.size() >= 2){
+					for(int index = 0;index < wires.size() ; index++){
+						Wire wire1 = wires.get(index);
+						for(int y = index + 1;y < wires.size();y++){
+							Wire wire2 = wires.get(y);
+							int tmp = wire1.right - wire2.right + wire2.left - wire1.left;
+							if(tmp == 0)
+								continue;
+							double _x = ((double)(wire2.left - wire1.left))/(double)(tmp);
+							if(_x < 1 && _x > 0){
+								intersections ++;
+							}
+						}
+						/*int smallerPoints = rightPoints.indexOf(wire.right);
+						intersections += Math.min(wires.size() - (index + 1), smallerPoints);*/
+					}
 				}
 				
 				wires.clear();
@@ -148,7 +160,7 @@ public class RopeIntranet extends CodeJamCase {
 	
 	@Override
 	protected void runCase() {
-		super.parseInput(new File("G:\\dep\\rope-intranet-large.in"), new InputCaseLineParser() {
+		super.parseInput(new File("G:\\dep\\code-jam-case\\rope-intranet-large.in"), new InputCaseLineParser() {
 			
 			@Override
 			public void parseLine(int lineNumber, String line) {

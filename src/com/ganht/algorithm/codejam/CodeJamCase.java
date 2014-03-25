@@ -52,4 +52,17 @@ public abstract class CodeJamCase {
 		
 	}
 	
+	protected void acceptInput(CaseInputReader caseInputReader){
+		
+	}
+	
+	protected void parseInput(File file){
+		try {
+			BufferedReader bufferReader = new BufferedReader(new FileReader(file));
+			acceptInput(CaseInputReader.build(bufferReader));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
 }
