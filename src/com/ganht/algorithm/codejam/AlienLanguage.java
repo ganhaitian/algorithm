@@ -84,6 +84,12 @@ public class AlienLanguage extends CodeJamCase {
 	private List<String> words = new ArrayList<String>();
 	private int caseIndex = 0;
 	
+	private class a extends AlienLanguage{
+		public void b(){
+			
+		}
+	}
+	
 	private void runAlgorithm(int lineNumber,String line){
 		
 		if(lineNumber == 1){
@@ -140,6 +146,6 @@ public class AlienLanguage extends CodeJamCase {
 	}
 
 	public static void main(String[] args){
-		new AlienLanguage().runCase();
+		//new AlienLanguage().runCase();
 	}
 }

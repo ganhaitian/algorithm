@@ -13,6 +13,14 @@ public class CaseInputReader {
 		this.bufferedRader = bufferedReader;
 	}
 	
+	public String readOneLine(){
+		try {
+			return bufferedRader.readLine();
+		} catch (IOException e) {
+			return null;
+		}
+	}
+	
 	public List<String> readLines(int lineNumber){
 		if(bufferedRader != null){
 			String tmpLine = null;

@@ -31,16 +31,17 @@ public abstract class CodeJamCase {
 			int lineCount = 0;
 			int tmpIndex  = 0;
 			int caseIndex = 0;
-			String caseNumber = bufferReader.readLine();
+			//String caseNumber = bufferReader.readLine();
 			String line = bufferReader.readLine();
+			int caseLineNumber = blockParser.getCaseLineNumber();
 			
 			while(line != null){
-				tmpIndex = (++lineCount)%blockParser.getCaseLineNumber() ;
+				tmpIndex = (++lineCount)%caseLineNumber;
 				if(tmpIndex == 0){
-					tmpIndex = 3;
+					tmpIndex = caseLineNumber;
 				}
 				caseContent[tmpIndex-1] = line;
-				if(tmpIndex == 3){
+				if(tmpIndex == caseLineNumber){
 					blockParser.parseLine(++caseIndex,caseContent);
 				}
 				line = bufferReader.readLine();
