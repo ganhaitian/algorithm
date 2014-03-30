@@ -8,7 +8,7 @@ public class Watersheds extends CodeJamCase {
 
 	@Override
 	protected void runCase() {
-		parseInput(new File(""));
+		parseInput(new File("/Users/ganhaitian/dep/input/watersheds-small.in"));
 	}
 	
 	public int NORTH = 0,WEST = 1,EAST = 2,SOUTH = 3;
@@ -89,6 +89,7 @@ public class Watersheds extends CodeJamCase {
 		while(tmpCaseInfo != null){
 			String[] caseInfo = tmpCaseInfo.split(" ");
 			int h = Integer.parseInt(caseInfo[0]);
+			int w = Integer.parseInt(caseInfo[1]);
 			
 			List<String> lines = caseInputReader.readLines(h);
 			for(String line:lines){
@@ -112,6 +113,7 @@ public class Watersheds extends CodeJamCase {
 				}
 				
 				System.out.printf("Case #%d:/n", ++caseIndex);
+				int tmpCount = 0;
 				
 				for(Cell cell:allCells){
 					if(cell.label == null){
@@ -119,11 +121,17 @@ public class Watersheds extends CodeJamCase {
 					}else{
 						System.out.print(cell.label);
 					}
+					
+					if(++tmpCount == w){
+						System.out.println("");
+						tmpCount = 0;
+					}
 				}
 			}
 		}
 		
 		
 	}
+	
 
 }
