@@ -234,13 +234,30 @@ public class Firetruck {
 		System.out.println(touchedCorners);
 	}
 	
-	public static void main(String[] args){
+	/*public static void main(String[] args){
 		new Firetruck().genMap(
 			new File(
 				Firetruck.class.getClassLoader().
 				getResource("firetruck.input").
 				getPath()
 		));
+	}*/
+	
+	public static void printStations(int[][] l,int ll,int n){
+	  if(n == 0)
+	    System.out.println("line "+l[ll][n] +",station "+n);
+	  else{
+	    printStations(l,ll,n-1);
+	    if(n < 5){
+	      System.out.println("line "+l[ll][n] +",station "+n);
+	    }else{
+	      System.out.println("line 0,station 5");
+	    }
+	  }
+	}
+	
+	public static void main(String[] args){
+	  printStations(new int[][]{{1,2,1,1,2},{1,2,1,2,2}},1,5);
 	}
 	
 	
