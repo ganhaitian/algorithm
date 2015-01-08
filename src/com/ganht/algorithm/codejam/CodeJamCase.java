@@ -31,7 +31,7 @@ public abstract class CodeJamCase {
 			int lineCount = 0;
 			int tmpIndex  = 0;
 			int caseIndex = 0;
-			//String caseNumber = bufferReader.readLine();
+			String caseNumber = bufferReader.readLine();
 			String line = bufferReader.readLine();
 			int caseLineNumber = blockParser.getCaseLineNumber();
 			
