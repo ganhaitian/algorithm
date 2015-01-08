@@ -8,16 +8,32 @@ import java.util.*;
  */
 public class CardGame extends CodeJamCase {
 
-    public static int getSmallestLeftCardNum2(List<Integer> cards,int K){
-        while(true){
+    public static int getSmallestLeftCardNum2(List<Integer> cards, int K) {
+        int tmpIndex = 0;
+        while (true) {
             int i = 0;
             int j = cards.size() - 1;
 
-            if( i >= j){
+            while (true) {
+                if ((i + 3) > cards.size()) {
+                    break;
+                }
+
+                int a = cards.get(i);
+                int b = cards.get(i + 1);
+                int c = cards.get(i + 2);
+
+                if (c - b == b - a && c - b == K) {
+                    tmpIndex = i;
+                } else {
+                    i++;
+                }
+            }
+
+            if (i >= j) {
                 i = 0;
                 j = cards.size() - 1;
             }
-
 
 
             i++;
@@ -27,6 +43,7 @@ public class CardGame extends CodeJamCase {
 
     /**
      * 这个也是有问题的，这个方法只在K值为零时正确
+     *
      * @param cards
      * @param K
      * @return
@@ -154,7 +171,7 @@ public class CardGame extends CodeJamCase {
 
     public static void main(String[] args) {
         new CardGame().parseInput(
-            new File("C:\\Users\\gan\\Downloads\\C-large-practice.in"),
+            new File("C:\\Users\\gan\\Downloads\\C-small-practice.in"),
             new InputCaseBlockParser() {
                 @Override
                 public void parseLine(int caseIndex, String[] line) {
