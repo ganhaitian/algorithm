@@ -43,6 +43,17 @@ public class ParenthesesOrder extends CodeJamCase {
         return result.toString();
     }
 
+    /**
+     * 效率太差，large-pratice.in过不去
+     * @param n
+     * @param n1
+     * @param n2
+     * @param k
+     * @param accu
+     * @param accuSum
+     * @param tmpValue
+     * @return
+     */
     public static int d(int n, int n1, int n2, long k, int accu, int accuSum, StringBuffer tmpValue) {
 
         if (n1 == 0) {
