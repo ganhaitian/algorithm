@@ -1,8 +1,11 @@
 package com.ganht.algorithm.codejam;
 
-import java.io.CharArrayReader;
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Problem
@@ -81,58 +84,57 @@ public class Minesweeper extends CodeJamCase {
 
         private void addNeibour(Cell cell) {
             neighbours.add(cell);
+            if (cell.mine)
+                this.num++;
         }
 
         private void reveal() {
-            int num = 0;
-            for (Cell neibour : neighbours) {
-                if (neibour.mine) {
-                    num++;
-                }
-            }
             this.revealed = true;
             if (num == 0) {
                 for (Cell neibour : neighbours) {
-                    if(!neibour.revealed)
+                    if (!neibour.revealed)
                         neibour.reveal();
                 }
             }
         }
     }
 
-    public static class Position{
+    public static class Position {
         int row;
         int col;
-        public Position(int row,int col){
+
+        public Position(int row, int col) {
             this.row = row;
             this.col = col;
         }
-        public boolean equals(Object o){
-            if(o != null && o instanceof Position){
-                Position target = (Position)o;
+
+        public boolean equals(Object o) {
+            if (o != null && o instanceof Position) {
+                Position target = (Position) o;
                 return this.row == target.row && this.col == target.col;
             }
             return false;
         }
-        public int hashCode(){
-            return ((Integer)row).hashCode() * ((Integer)col);
+
+        public int hashCode() {
+            return ((Integer) row).hashCode() * ((Integer) col);
         }
     }
 
     public static int calMinNumClick(List<String> mineGrid) {
 
-        Map<Position,Cell> cache = new HashMap<Position, Cell>();
+        Map<Position, Cell> cache = new HashMap<Position, Cell>();
 
         List<Cell> mineCells = new ArrayList<Cell>();
         for (int row = 0; row < mineGrid.size(); row++) {
             char[] mineCellStrs = mineGrid.get(row).toCharArray();
             for (int i = 0; i < mineCellStrs.length; i++) {
 
-                Position pos = new Position(row,i);
+                Position pos = new Position(row, i);
                 Cell cell = cache.get(pos);
-                if(cell == null) {
+                if (cell == null) {
                     cell = new Cell();
-                    cache.put(pos,cell);
+                    cache.put(pos, cell);
                 }
 
                 if (mineCellStrs[i] == '*')
@@ -147,11 +149,11 @@ public class Minesweeper extends CodeJamCase {
                             continue;
                         if (j == row && k == i)
                             continue;
-                        Position neighbourPos = new Position(j,k);
+                        Position neighbourPos = new Position(j, k);
                         Cell neighbourCell = cache.get(neighbourPos);
-                        if(neighbourCell == null){
+                        if (neighbourCell == null) {
                             neighbourCell = new Cell();
-                            cache.put(neighbourPos,neighbourCell);
+                            cache.put(neighbourPos, neighbourCell);
                         }
                         char neighBourCellStr = mineGrid.get(j).toCharArray()[k];
                         if (neighBourCellStr == '*')
@@ -162,18 +164,17 @@ public class Minesweeper extends CodeJamCase {
             }
         }
 
+        int minNum = 0;
         for (Cell mineCell : mineCells) {
-            if (!mineCell.mine && !mineCell.revealed) {
+            if (!mineCell.mine && !mineCell.revealed && mineCell.num == 0) {
                 mineCell.reveal();
+                minNum++;
             }
         }
 
-        int minNum = 0;
         for (Cell mineCell : mineCells) {
-            if(mineCell.revealed && mineCell.num == 0)
-                minNum ++;
-            if(!mineCell.revealed && !mineCell.mine){
-                minNum ++;
+            if (!mineCell.revealed && !mineCell.mine) {
+                minNum++;
             }
         }
 
@@ -183,26 +184,33 @@ public class Minesweeper extends CodeJamCase {
     public static void main(String[] args) {
 
         final List<String> tmpMineLine = new ArrayList<String>();
+        final AtomicInteger caseIndex = new AtomicInteger();
 
         new Minesweeper().parseInput(
-            new File("C:\\Users\\gan\\Downloads\\A-small-practice (3).in"),
+            new File("C:\\Users\\gan\\Downloads\\A-large-practice (2).in"),
             new InputCaseLineParser() {
                 @Override
                 public void parseLine(int lineNumber, String line) {
 
-                    if(lineNumber == 1)
+                    if (lineNumber == 1)
                         return;
 
                     if (line.indexOf(".") >= 0 || line.indexOf("*") >= 0) {
                         tmpMineLine.add(line);
                     } else {
                         if (lineNumber > 2) {
-                            calMinNumClick(tmpMineLine);
+                            System.out.println(String.format("Case #%d: %d",
+                                caseIndex.incrementAndGet(), calMinNumClick(tmpMineLine)));
                         }
                         tmpMineLine.clear();
                     }
                 }
             });
+
+        if (tmpMineLine.size() > 0) {
+            System.out.println(String.format("Case #%d: %d",
+                caseIndex.incrementAndGet(), calMinNumClick(tmpMineLine)));
+        }
     }
 
 }
