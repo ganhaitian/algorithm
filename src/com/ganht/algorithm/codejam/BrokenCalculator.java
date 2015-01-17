@@ -1,6 +1,8 @@
 package com.ganht.algorithm.codejam;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Problem
@@ -69,17 +71,43 @@ public class BrokenCalculator extends CodeJamCase{
 
     }
 
-    public static int getMinClickNum(String keyDespStr,int targetNum){
+    public static int getMinClickNum(List<Integer> goodKeys,int targetNum){
+        String targetNumStr = String.valueOf(targetNum);
+        boolean allDone = true;
+        for(Integer goodKey:goodKeys){
+            if(targetNumStr.indexOf(String.valueOf(goodKey)) < 0){
+                allDone = false;
+                break;
+            }
+        }
+
+        if(allDone){
+            return targetNumStr.length();
+        }
+
+        for(int factor = 0;factor < targetNum;factor ++){
+
+        }
+
         return 0;
     }
 
-    public static void main(String args){
+    public static void main(String[] args){
         new BrokenCalculator().parseInput(
             new File(""),
             new InputCaseBlockParser() {
             @Override
             public void parseLine(int caseIndex, String[] line) {
-                int minClickNum = getMinClickNum(line[0],Integer.parseInt(line[1]));
+
+                String[] keyDesp = line[0].split(" ");
+                List<Integer> goodKeys = new ArrayList<Integer>();
+                for(int key = 0; key < 10;key ++){
+                    if(Integer.parseInt(keyDesp[key]) == 1){
+                        goodKeys.add(key);
+                    }
+                }
+
+                int minClickNum = getMinClickNum(goodKeys,Integer.parseInt(line[1]));
                 if(minClickNum == 0){
                     System.out.println(
                         String.format("Case #%d: %s",caseIndex,"Impossible"));
