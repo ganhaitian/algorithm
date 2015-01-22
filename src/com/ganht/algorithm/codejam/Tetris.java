@@ -129,14 +129,89 @@ public class Tetris extends CodeJamCase {
                         W.set(0);
                         H.set(0);
                         N.set(0);
-                    }else
+                    } else
                         lineIndex.incrementAndGet();
                 }
 
             });
     }
 
-    private List<String> getFinalState(int W, int H, List<String> tetrominoTypes) {
+    private class Cell {
+        boolean fill;
+    }
+
+    private Integer[][] rotateT(Integer[][] input) {
+        Integer[][] output = new Integer[input[0].length][input.length];
+        for (int i = 0; i < output.length; i++) {
+            for (int j = 0; j < output[0].length; j++) {
+                output[j][input[0].length - i - 1] = input[i][j];
+            }
+        }
+        return output;
+    }
+
+    private List<String> getFinalState(int W, int H, List<String> tetroTypes) {
+
+        Cell[][] field = new Cell[H][W];
+        for (int h = 0; h < H; h++) {
+            for (int w = 0; w < W; w++) {
+                field[h][w] = new Cell();
+            }
+        }
+
+        Integer[][] t1 = {{1, 0}, {1, 1}, {0, 1}};
+        Integer[][] t2 = {{0, 1}, {1, 1}, {1, 0}};
+        Integer[][] t3 = {{1, 0}, {1, 0}, {1, 1}};
+        Integer[][] t4 = {{0, 1}, {0, 1}, {1, 1}};
+        Integer[][] t5 = {{1, 1}, {1, 1}, {1, 1}};
+        Integer[][] t6 = {{1}, {1}, {1}, {1}};
+        Integer[][] t7 = {{0, 1, 0}, {1, 1, 1}};
+
+        List<Integer[][]> tList = new ArrayList<Integer[][]>();
+        tList.add(t1);
+        tList.add(t2);
+        tList.add(t3);
+        tList.add(t4);
+        tList.add(t5);
+        tList.add(t6);
+        tList.add(t7);
+
+        for (String tetroType : tetroTypes) {
+
+            String[] tetroPart = tetroType.split(" ");
+            int t = Integer.parseInt(tetroPart[0]);
+            int r = Integer.parseInt(tetroPart[1]);
+            int x = Integer.parseInt(tetroPart[2]);
+
+            Integer[][] tetro = tList.get(t - 1);
+            for (int i = 0; i < r; i++) {
+                tetro = rotateT(tetro);
+            }
+
+            int tetroHeight = tetro.length;
+            int tetroWidth = tetro[0].length;
+            int stayPos = 0;
+            for (int i = 0; i <= H - tetroHeight + 1; i++) {
+                for(int k = tetroHeight - 1;k >= 0;k--){
+                    for(int j = 0;j <= tetroWidth - 1;j ++){
+                        if(field[k + i][j + x].fill && tetro[k][j] == 1){
+                            stayPos = i;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            for(int i = 0;i <= tetroHeight - 1;i++){
+                for(int j = 0;j <= tetroWidth;j++){
+                    if(tetro[i][j] == 1){
+                        field[stayPos + i][x + j].fill = true;
+                    }
+                }
+            }
+
+        }
+
         return null;
     }
 
