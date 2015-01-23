@@ -1,8 +1,7 @@
 package com.ganht.algorithm.codejam;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -100,7 +99,7 @@ public class Tetris extends CodeJamCase {
         final List<String> tetrominoTypes = new ArrayList<String>();
         final AtomicInteger caseIndex = new AtomicInteger(0);
 
-        parseInput(new File(""),
+        parseInput(new File("C:\\Users\\gan\\Downloads\\D-large-practice (1).in"),
             new InputCaseLineParser() {
                 @Override
                 public void parseLine(int lineNumber, String line) {
@@ -121,10 +120,15 @@ public class Tetris extends CodeJamCase {
                         List<String> finalStateLines = getFinalState(W.get(), H.get(), tetrominoTypes);
                         System.out.println(String.format("Case #%d:", caseIndex.incrementAndGet()));
 
-                        for (String finalStateLine : finalStateLines) {
-                            System.out.println(finalStateLine);
+                        if (finalStateLines == null) {
+                            System.out.println("Game Over!");
+                        } else {
+                            for (String finalStateLine : finalStateLines) {
+                                System.out.println(finalStateLine);
+                            }
                         }
 
+                        tetrominoTypes.clear();
                         lineIndex.set(0);
                         W.set(0);
                         H.set(0);
@@ -142,28 +146,83 @@ public class Tetris extends CodeJamCase {
 
     private Integer[][] rotateT(Integer[][] input) {
         Integer[][] output = new Integer[input[0].length][input.length];
-        for (int i = 0; i < output.length; i++) {
-            for (int j = 0; j < output[0].length; j++) {
-                output[j][input[0].length - i - 1] = input[i][j];
+        for (int i = 0; i < input.length; i++) {
+            for (int j = 0; j < input[0].length; j++) {
+                output[input[0].length - j - 1][i] = input[i][j];
             }
         }
         return output;
     }
 
-    private List<String> getFinalState(int W, int H, List<String> tetroTypes) {
+    private class Field {
 
-        Cell[][] field = new Cell[H][W];
-        for (int h = 0; h < H; h++) {
-            for (int w = 0; w < W; w++) {
-                field[h][w] = new Cell();
+        List<Integer> lineStatus = new ArrayList<Integer>();
+        List<Cell[]> cells = new ArrayList<Cell[]>();
+        private int W, H;
+
+        public Field(int W, int H) {
+            for (int h = 0; h < H; h++) {
+                Cell[] wLine = new Cell[W];
+                for (int w = 0; w < W; w++) {
+                    wLine[w] = new Cell();
+                }
+                cells.add(wLine);
+                //初始化每行的填充数据
+                lineStatus.add(0);
+            }
+            this.W = W;
+            this.H = H;
+        }
+
+        public Cell getCell(int h, int w) {
+            return cells.get(h)[w];
+        }
+
+        public void fill(int h, int w) {
+            cells.get(h)[w].fill = true;
+            Integer fillNum = lineStatus.get(h);
+            fillNum = fillNum + 1;
+            lineStatus.set(h, fillNum);
+            if (fillNum == W) {
+                lineStatus.remove(h);
+                lineStatus.add(0, 0);
+
+                cells.remove(h);
+                Cell[] wLine = new Cell[W];
+                for (int _w = 0; _w < W; _w++) {
+                    wLine[_w] = new Cell();
+                }
+                cells.add(0, wLine);
             }
         }
+
+        public List<String> toStringList() {
+            List<String> stringList = new ArrayList<String>();
+            for (int h = 0; h < H; h++) {
+                StringBuilder line = new StringBuilder();
+                for (int w = 0; w < W; w++) {
+                    if (cells.get(h)[w].fill) {
+                        line.append("x");
+                    } else {
+                        line.append(".");
+                    }
+                }
+                stringList.add(line.toString());
+            }
+            return stringList;
+        }
+
+    }
+
+    private List<String> getFinalState(int W, int H, List<String> tetroTypes) {
+
+        Field field = new Field(W, H);
 
         Integer[][] t1 = {{1, 0}, {1, 1}, {0, 1}};
         Integer[][] t2 = {{0, 1}, {1, 1}, {1, 0}};
         Integer[][] t3 = {{1, 0}, {1, 0}, {1, 1}};
         Integer[][] t4 = {{0, 1}, {0, 1}, {1, 1}};
-        Integer[][] t5 = {{1, 1}, {1, 1}, {1, 1}};
+        Integer[][] t5 = {{1, 1}, {1, 1}};
         Integer[][] t6 = {{1}, {1}, {1}, {1}};
         Integer[][] t7 = {{0, 1, 0}, {1, 1, 1}};
 
@@ -188,31 +247,44 @@ public class Tetris extends CodeJamCase {
                 tetro = rotateT(tetro);
             }
 
+            if (tetro.length > H)
+                return null;
+
             int tetroHeight = tetro.length;
             int tetroWidth = tetro[0].length;
             int stayPos = 0;
-            for (int i = 0; i <= H - tetroHeight + 1; i++) {
-                for(int k = tetroHeight - 1;k >= 0;k--){
-                    for(int j = 0;j <= tetroWidth - 1;j ++){
-                        if(field[k + i][j + x].fill && tetro[k][j] == 1){
-                            stayPos = i;
-                            break;
+            boolean stop = false;
+            outer:
+            for (int i = 0; i <= H - tetroHeight; i++) {
+                stayPos = i;
+                for (int k = tetroHeight - 1; k >= 0; k--) {
+                    for (int j = 0; j <= tetroWidth - 1; j++) {
+                        if (field.getCell(k + i, j + x).fill && tetro[k][j] == 1) {
+                            if(stayPos == 0)
+                                stop = true;
+                            else{
+                                stayPos--;
+                            }
+                            break outer;
                         }
                     }
                 }
             }
 
-            for(int i = 0;i <= tetroHeight - 1;i++){
-                for(int j = 0;j <= tetroWidth;j++){
-                    if(tetro[i][j] == 1){
-                        field[stayPos + i][x + j].fill = true;
+            if(stop)
+                return null;
+
+            for (int i = 0; i <= tetroHeight - 1; i++) {
+                for (int j = 0; j <= tetroWidth - 1; j++) {
+                    if (tetro[i][j] == 1) {
+                        field.fill(stayPos + i, x + j);
                     }
                 }
             }
 
         }
 
-        return null;
+        return field.toStringList();
     }
 
     public static void main(String[] args) {
