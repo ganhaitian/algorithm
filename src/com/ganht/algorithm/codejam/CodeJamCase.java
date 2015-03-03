@@ -53,6 +53,38 @@ public abstract class CodeJamCase {
 
     }
 
+    protected void parseAdaptiveInput(File file, InputCaseBlockParser blockParser) {
+        try {
+            BufferedReader bufferReader = new BufferedReader(new FileReader(file));
+            String[] caseContent = new String[blockParser.getCaseLineNumber()];
+            int lineCount = 0;
+            int tmpIndex = 0;
+            int caseIndex = 0;
+            String caseNumber = bufferReader.readLine();
+            String line = bufferReader.readLine();
+            int caseLineNumber = Integer.parseInt(line);
+
+            while (line != null) {
+                tmpIndex = (++lineCount) % caseLineNumber;
+                if (tmpIndex == 0) {
+                    tmpIndex = caseLineNumber;
+                }
+                caseContent[tmpIndex - 1] = line;
+                if (tmpIndex == caseLineNumber) {
+                    blockParser.parseLine(++caseIndex, caseContent);
+                    line = bufferReader.readLine();
+                    caseLineNumber = Integer.parseInt(line);
+                    lineCount = 0;
+                }
+                line = bufferReader.readLine();
+            }
+            bufferReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     protected void acceptInput(CaseInputReader caseInputReader) {
 
     }
