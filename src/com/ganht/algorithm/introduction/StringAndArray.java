@@ -73,9 +73,141 @@ public class StringAndArray {
         return new String(newCharSet);
     }
 
+    /**
+     * Given two strings, write a method to decide if one is a permutation of the other
+     * 判断一个字符串是否是另外一个字符串的全排列
+     *
+     * @param a
+     * @param b
+     * @return
+     */
+    public boolean isPermutation(String a, String b) {
+        if (a == null || b == null || a.length() != b.length())
+            return false;
+
+        int[] counter = new int[256];
+        for (int i = 0; i < a.length(); i++) {
+            counter[a.charAt(i)]++;
+        }
+
+        for (int j = 0; j < b.length(); j++) {
+            if (--counter[b.charAt(j)] < 0)
+                return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Write a method to replace all spaces in a string with'%20'. You may assume that
+     * the string has sufficient space at the end of the string to hold the additional
+     * characters, and that you are given the "true" length of the string.
+     * (Note: if implementing in Java, please use a character array so that you can perform this operation in place.)
+     * <p/>
+     * EXAMPLE
+     * Input: "Mr John Smith"
+     * Output: "Mr%20Dohn%20Smith"
+     *
+     * @return
+     */
+    public String replaceSpace(char[] input, int length) {
+        int spaceCount = 0;
+        for (int i = 0; i < length; i++) {
+            if (input[i] == ' ') {
+                spaceCount++;
+            }
+        }
+
+        int newLength = length + spaceCount * 2;
+        input[newLength] = '\0';
+        for (int i = length - 1; i >= 0; i--) {
+            if (input[i] == ' ') {
+                input[newLength - 1] = '0';
+                input[newLength - 2] = '2';
+                input[newLength - 3] = '%';
+                newLength = newLength - 3;
+            } else {
+                input[newLength - 1] = input[i];
+                newLength--;
+            }
+        }
+
+        return new String(input);
+    }
+
+    /**
+     * Implement a method to perform basic string compression using the counts
+     * of repeated characters. For example, the string aabcccccaa a would become
+     * a2b1
+     * c5a3. If the "compressed" string would not become smaller than the
+     * original string, your method should return the original string
+     *
+     * @param input
+     * @return
+     */
+    public String compressString(String input) {
+        char[] charSet = input.toCharArray();
+        StringBuffer newString = new StringBuffer();
+        // 这里面也是有小技巧的，为了避免边界条件的判断，可以变化初始化值
+        char lastChar = '\0';
+        int count = 0;
+        for (int i = 0; i < charSet.length; i++) {
+            if (lastChar != input.charAt(i)) {
+                lastChar = input.charAt(i);
+                if (count > 0)
+                    newString.append(count);
+                newString.append(input.charAt(i));
+                count = 1;
+            } else {
+                count++;
+            }
+        }
+
+        newString.append(count);
+        if (newString.length() == input.length())
+            return input;
+
+        // 新方法，改变初始化值，来避免边界条件的特殊判断
+        char lastChar1 = input.charAt(0);
+        int count1 = 1;
+        for (int i = 0; i < charSet.length; i++) {
+            if (lastChar1 != input.charAt(i)) {
+                newString.append(lastChar1).append(count1);
+                count1 = 1;
+                lastChar1 = input.charAt(i);
+            } else {
+                count1++;
+            }
+        }
+
+        newString.append(lastChar1).append(count1);
+        return newString.toString();
+    }
+
+    /**
+     * Given an image represented by an NxN matrix, where each pixel in the image is
+     * 4 bytes, write a method to rotate the image by 90 degrees. Can you do this in
+     * place?
+     *
+     * @param matrix
+     */
+    public void rotateMatrix(int[][] matrix) {
+        int tmp;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+               tmp = matrix[i][j];
+
+            }
+        }
+    }
+
     public static void main(String[] args) {
         //System.out.println(new StringAndArray().determineUniqueString("abcdefga"));
-        System.out.println(new StringAndArray().reverseString("abcdefgh"));
+        //System.out.println(new StringAndArray().reverseString("abcdefgh"));
+        //System.out.println(new StringAndArray().isPermutation("abbcd","babca"));
+        //System.out.println(new StringAndArray().replaceSpace("Mr John Smith"));
+        //System.out.println(new StringAndArray().replaceSpace(new String("Mr John Smith                                ").toCharArray(), 13));
+        System.out.println(new StringAndArray().compressString("aabcccccaa"));
     }
 
 }
