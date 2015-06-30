@@ -189,16 +189,48 @@ public class StringAndArray {
      * 4 bytes, write a method to rotate the image by 90 degrees. Can you do this in
      * place?
      *
+     * 翻转矩阵
+     *
      * @param matrix
      */
-    public void rotateMatrix(int[][] matrix) {
+    public int[][] rotateMatrix(int[][] matrix,int n) {
         int tmp;
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[0].length; j++) {
-               tmp = matrix[i][j];
-
+        // 关键是如何让已经变换过的数字，不再重复变换
+        // 有效的不会重复的区域，是半个三角形形状
+        int length = n -1;
+        for (int i = 0; i < n / 2; i++) {
+            int first = i;
+            int last = n - 1 - i;
+            for (int j = first; j < last; j++) {
+                tmp = matrix[i][j];
+                matrix[i][j] = matrix[length - j][i];
+                matrix[length - j][i] = matrix[length - i][length - j];
+                matrix[length - i][length - j] = matrix[j][length - i];
+                matrix[j][length - i] = tmp;
             }
         }
+
+        printMatrix(matrix);
+        return matrix;
+    }
+
+    private void printMatrix(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    /**
+     * Write an algorithm such that if an element in an MxN matrix is 0, its entire row
+     * and column are set to 0.
+     * @param matrix
+     * @return
+     */
+    public int[][] setToZero(int[][] matrix){
+        return null;
     }
 
     public static void main(String[] args) {
@@ -207,7 +239,8 @@ public class StringAndArray {
         //System.out.println(new StringAndArray().isPermutation("abbcd","babca"));
         //System.out.println(new StringAndArray().replaceSpace("Mr John Smith"));
         //System.out.println(new StringAndArray().replaceSpace(new String("Mr John Smith                                ").toCharArray(), 13));
-        System.out.println(new StringAndArray().compressString("aabcccccaa"));
+        //System.out.println(new StringAndArray().compressString("aabcccccaa"));
+        System.out.println(new StringAndArray().rotateMatrix(new int[][]{{1, 2, 3,4}, { 5, 6,7,8}, {9,10,11,12},{13,14,15,16}},4));
     }
 
 }
