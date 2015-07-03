@@ -102,7 +102,8 @@ public class StringAndArray {
      * Write a method to replace all spaces in a string with'%20'. You may assume that
      * the string has sufficient space at the end of the string to hold the additional
      * characters, and that you are given the "true" length of the string.
-     * (Note: if implementing in Java, please use a character array so that you can perform this operation in place.)
+     * (Note: if implementing in Java, please use a character array so that you can
+     * perform this operation in place.)
      * <p/>
      * EXAMPLE
      * Input: "Mr John Smith"
@@ -188,16 +189,16 @@ public class StringAndArray {
      * Given an image represented by an NxN matrix, where each pixel in the image is
      * 4 bytes, write a method to rotate the image by 90 degrees. Can you do this in
      * place?
-     *
+     * <p/>
      * 翻转矩阵
      *
      * @param matrix
      */
-    public int[][] rotateMatrix(int[][] matrix,int n) {
+    public int[][] rotateMatrix(int[][] matrix, int n) {
         int tmp;
         // 关键是如何让已经变换过的数字，不再重复变换
         // 有效的不会重复的区域，是半个三角形形状
-        int length = n -1;
+        int length = n - 1;
         for (int i = 0; i < n / 2; i++) {
             int first = i;
             int last = n - 1 - i;
@@ -214,6 +215,59 @@ public class StringAndArray {
         return matrix;
     }
 
+    /**
+     * Write an algorithm such that if an element in an MxN matrix is 0, its entire
+     * rowand column are set to 0
+     *
+     * @param matrix
+     */
+    public void setZeroInMatrix(int[][] matrix) {
+        boolean[] rowFlags = new boolean[matrix.length];
+        boolean[] colFlags = new boolean[matrix[0].length];
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (colFlags[j])
+                    break;
+                else if (matrix[i][j] == 0) {
+                    rowFlags[i] = true;
+                    colFlags[j] = true;
+                }
+            }
+        }
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if(rowFlags[i]||colFlags[j]){
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+
+        printMatrix(matrix);
+    }
+
+    /**
+     * Assume you have a method isSubstring which checks if one word is a substring
+     * of another. Given two strings, si and s2, write code to check If s2 is a rotation
+     * of s1 using only one call to isSubstring
+     * (e.g., "waterbottle" is a rotation of "erbottlewat").
+     * @param str1
+     * @param str2
+     * @return
+     */
+    public boolean checkRotation(String str1,String str2){
+        String tmp = str2 + str2;
+        if(isSubstring(str1,tmp))
+            return true;
+        return false;
+    }
+
+    private boolean isSubstring(String str1,String str2){
+        return str2.contains(str1);
+    }
+
+
     private void printMatrix(int[][] matrix) {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {
@@ -226,10 +280,12 @@ public class StringAndArray {
     /**
      * Write an algorithm such that if an element in an MxN matrix is 0, its entire row
      * and column are set to 0.
+     *
      * @param matrix
      * @return
      */
-    public int[][] setToZero(int[][] matrix){
+    public int[][] setToZero(int[][] matrix) {
+
         return null;
     }
 
@@ -240,7 +296,9 @@ public class StringAndArray {
         //System.out.println(new StringAndArray().replaceSpace("Mr John Smith"));
         //System.out.println(new StringAndArray().replaceSpace(new String("Mr John Smith                                ").toCharArray(), 13));
         //System.out.println(new StringAndArray().compressString("aabcccccaa"));
-        System.out.println(new StringAndArray().rotateMatrix(new int[][]{{1, 2, 3,4}, { 5, 6,7,8}, {9,10,11,12},{13,14,15,16}},4));
+        //System.out.println(new StringAndArray().rotateMatrix(new int[][]{{1, 2,0, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {0, 14, 15, 16}}, 4));
+        //new StringAndArray().setZeroInMatrix(new int[][]{{1, 2,0, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {0, 14, 15, 16}});
+        System.out.println(new StringAndArray().checkRotation("waterbottle","erbottlewat"));
     }
 
 }
