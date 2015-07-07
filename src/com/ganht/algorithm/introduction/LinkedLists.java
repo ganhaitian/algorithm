@@ -155,19 +155,28 @@ public class LinkedLists {
         Node<Integer> tmp = new Node<Integer>(base.data);
         deleteNode(base);
         tmp.next = head;
+        head = tmp;
+        print(tmp);
 
-        Node<Integer> u = head;
+        Node<Integer> u = head.next;
         while(u != null){
             if(u.data < x){
                 tmp = new Node(u.data);
                 tmp.next = head;
+                head = tmp;
 
                 deleteNode(u);
-            }
-            u = u.next;
+            }else
+                u = u.next;
         }
 
         print(head);
+
+        // 上面这个太烦琐了，还得删结点
+        // 简单的思路是用两个链，一个存比他小的，一个存比他大的，然后merge
+
+
+
         return head;
     }
 
@@ -176,6 +185,7 @@ public class LinkedLists {
             System.out.print(head.data + ",");
             head = head.next;
         }
+        System.out.println();
     }
 
     public static Node build(Object[] input) {
@@ -195,7 +205,7 @@ public class LinkedLists {
         //        build(new Object[]{"F", "O", "L", "L", "O", "W", " ", "U", "P"}), 3);
         //System.out.println(result.toString());
         new LinkedLists().partitionLinkedList(
-                build(new Object[]{4,1,2,7,8,5,9}),5
+                build(new Object[]{4,1,2,7,8,5,3,9}),5
         );
     }
 
