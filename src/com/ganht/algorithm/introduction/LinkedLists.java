@@ -142,7 +142,7 @@ public class LinkedLists {
     public Node partitionLinkedList(Node<Integer> head,int x){
         // 移动结点的代价好高，好繁琐啊
         // 思路就是，先遍历
-        Node<Integer> t = head;
+        /*Node<Integer> t = head;
         Node<Integer> base = null;
         while(t != null){
             if(x == t.data) {
@@ -170,13 +170,41 @@ public class LinkedLists {
                 u = u.next;
         }
 
-        print(head);
+        print(head);*/
 
         // 上面这个太烦琐了，还得删结点
         // 简单的思路是用两个链，一个存比他小的，一个存比他大的，然后merge
+        Node<Integer> smaller = null;
+        Node<Integer> larger = null;
 
+        Node<Integer> tmp = head;
+        Node<Integer> next;
+        while(tmp != null){
+            next = tmp.next;
+            if(tmp.data < x){
+                tmp.next = smaller;
+                smaller = tmp;
+            }else if(tmp.data > x){
+                tmp.next = larger;
+                larger = tmp;
+            }
+            tmp = next;
+        }
 
+        Node<Integer> mid = new Node<Integer>(x);
+        if(smaller == null){
+            mid.next = larger;
+            return mid;
+        }else{
+            head = smaller;
+            while(smaller.next != null){
+                smaller = smaller.next;
+            }
+            smaller.next = mid;
+            mid.next = larger;
+        }
 
+        print(head);
         return head;
     }
 
