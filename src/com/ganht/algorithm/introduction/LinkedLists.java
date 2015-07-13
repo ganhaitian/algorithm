@@ -208,6 +208,74 @@ public class LinkedLists {
         return head;
     }
 
+    /**
+     * You have two numbers represented by a linked list, where each node contains
+     * a single digit. The digits are stored in reverse order, such that the 1's digit
+     * is at the head of the list. Write a function that adds the two numbers and
+     * returns the sum as a linked list.
+     * SOLUTION
+     * FOLLOW UP
+     * Suppose the digits are stored in forward order. Repeat the above problem.
+     */
+    public Node add(Node<Integer> head1,Node<Integer> head2){
+        // 这个是倒序排列的时候
+        Node<Integer> t1 = head1;
+        Node<Integer> t2 = head2;
+        Node<Integer> result = null;
+        Node<Integer> prev = null;
+        int carry = 0;
+        int tmpSum;
+        while(t1 != null || t2 != null){
+            tmpSum = (t1 != null ? t1.data : 0) + (t2 != null ?t2.data : 0) + carry;
+            carry = tmpSum / 10;
+            Node<Integer> p = new Node<Integer>(tmpSum % 10);
+            if(prev != null)
+                prev.next = p;
+
+            prev = p;
+            if(result == null)
+                result = p;
+            if(t1 != null)
+                t1 = t1.next;
+            if(t2 != null)
+                t2 = t2.next;
+        }
+        print(result);
+        return result;
+    }
+
+    /**
+     * Given a circular linked list, implement an algorithm which returns the node
+     * at the beginning of the loop.
+     *
+     * @param head
+     * @return
+     */
+    public Node findStartOfLoop(Node head){
+        // 想解决这道题，首先要自己推出来两个定理
+        // 一个就是，如果存在环(注意环的循环点不一定是头)，用一快一慢两个结点去遍历，他们肯定会相遇
+        // 另外一个就是，如果设环外的长度是K，那么一快一慢两个结点相遇的位置是在环内距离环的入口点
+        // K的位置，即是从入口点算走了LOOP_SIZE - K步
+
+        Node f = head; // 快
+        Node s = head; // 慢
+
+        while(f.next != null){
+            f = f.next.next;
+            s = s.next;
+            if(s == f)
+                break;
+        }
+
+        s = head;
+        while(s != f){
+            s = s.next;
+            f = f.next;
+        }
+
+        return s;
+    }
+
     private void print(Node head) {
         while (head != null) {
             System.out.print(head.data + ",");
@@ -226,14 +294,18 @@ public class LinkedLists {
         return head;
     }
 
-
     public static void main(String[] args) {
         //new LinkedLists().removeDuplicate(build(new Object[]{"F","O","L","L","O","W"," ","U","P"}));
         //Object result = new LinkedLists().findKthToLast(
         //        build(new Object[]{"F", "O", "L", "L", "O", "W", " ", "U", "P"}), 3);
         //System.out.println(result.toString());
-        new LinkedLists().partitionLinkedList(
+        /*new LinkedLists().partitionLinkedList(
                 build(new Object[]{4,1,2,7,8,5,3,9}),5
+        );*/
+
+        Node result = new LinkedLists().add(
+                build(new Object[]{5,9,3,4,2}),
+                build(new Object[]{9,1,0,4,3,1,6})
         );
     }
 
