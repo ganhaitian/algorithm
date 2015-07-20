@@ -1,5 +1,7 @@
 package com.ganht.algorithm.introduction;
 
+import java.util.LinkedList;
+
 /**
  * 链表谜题
  * Created by ganhaitian on 2015/7/3.
@@ -96,6 +98,7 @@ public class LinkedLists {
 
     /**
      * Implement an algorithm to find the kth to last element of a singly linked list.
+     *
      * @param head
      * @param k
      * @return
@@ -124,9 +127,10 @@ public class LinkedLists {
     /**
      * Implement an algorithm to delete a node in the middle of a singly linked list,
      * given only access to that node.
+     *
      * @return
      */
-    public Object deleteNode(Node deleteNode){
+    public Object deleteNode(Node deleteNode) {
         // 注意，这个解法并不适用于最后一个结点的情况
         Node nextNode = deleteNode.next;
         deleteNode.data = nextNode.data;
@@ -135,11 +139,12 @@ public class LinkedLists {
     }
 
     /**
-     *  Write code to partition a linked list around a value x, such that all nodes
-     *  less than x come before alt nodes greater than or equal to x.
+     * Write code to partition a linked list around a value x, such that all nodes
+     * less than x come before alt nodes greater than or equal to x.
+     *
      * @return
      */
-    public Node partitionLinkedList(Node<Integer> head,int x){
+    public Node partitionLinkedList(Node<Integer> head, int x) {
         // 移动结点的代价好高，好繁琐啊
         // 思路就是，先遍历
         /*Node<Integer> t = head;
@@ -179,12 +184,12 @@ public class LinkedLists {
 
         Node<Integer> tmp = head;
         Node<Integer> next;
-        while(tmp != null){
+        while (tmp != null) {
             next = tmp.next;
-            if(tmp.data < x){
+            if (tmp.data < x) {
                 tmp.next = smaller;
                 smaller = tmp;
-            }else if(tmp.data > x){
+            } else if (tmp.data > x) {
                 tmp.next = larger;
                 larger = tmp;
             }
@@ -192,12 +197,12 @@ public class LinkedLists {
         }
 
         Node<Integer> mid = new Node<Integer>(x);
-        if(smaller == null){
+        if (smaller == null) {
             mid.next = larger;
             return mid;
-        }else{
+        } else {
             head = smaller;
-            while(smaller.next != null){
+            while (smaller.next != null) {
                 smaller = smaller.next;
             }
             smaller.next = mid;
@@ -217,7 +222,7 @@ public class LinkedLists {
      * FOLLOW UP
      * Suppose the digits are stored in forward order. Repeat the above problem.
      */
-    public Node add(Node<Integer> head1,Node<Integer> head2){
+    public Node add(Node<Integer> head1, Node<Integer> head2) {
         // 这个是倒序排列的时候
         Node<Integer> t1 = head1;
         Node<Integer> t2 = head2;
@@ -225,19 +230,19 @@ public class LinkedLists {
         Node<Integer> prev = null;
         int carry = 0;
         int tmpSum;
-        while(t1 != null || t2 != null){
-            tmpSum = (t1 != null ? t1.data : 0) + (t2 != null ?t2.data : 0) + carry;
+        while (t1 != null || t2 != null) {
+            tmpSum = (t1 != null ? t1.data : 0) + (t2 != null ? t2.data : 0) + carry;
             carry = tmpSum / 10;
             Node<Integer> p = new Node<Integer>(tmpSum % 10);
-            if(prev != null)
+            if (prev != null)
                 prev.next = p;
 
             prev = p;
-            if(result == null)
+            if (result == null)
                 result = p;
-            if(t1 != null)
+            if (t1 != null)
                 t1 = t1.next;
-            if(t2 != null)
+            if (t2 != null)
                 t2 = t2.next;
         }
         print(result);
@@ -251,7 +256,7 @@ public class LinkedLists {
      * @param head
      * @return
      */
-    public Node findStartOfLoop(Node head){
+    public Node findStartOfLoop(Node head) {
         // 想解决这道题，首先要自己推出来两个定理
         // 一个就是，如果存在环(注意环的循环点不一定是头)，用一快一慢两个结点去遍历，他们肯定会相遇
         // 另外一个就是，如果设环外的长度是K，那么一快一慢两个结点相遇的位置是在环内距离环的入口点
@@ -260,15 +265,15 @@ public class LinkedLists {
         Node f = head; // 快
         Node s = head; // 慢
 
-        while(f.next != null){
+        while (f.next != null) {
             f = f.next.next;
             s = s.next;
-            if(s == f)
+            if (s == f)
                 break;
         }
 
         s = head;
-        while(s != f){
+        while (s != f) {
             s = s.next;
             f = f.next;
         }
@@ -276,7 +281,67 @@ public class LinkedLists {
         return s;
     }
 
-    private void print(Node head) {
+    /**
+     * Implement a function to check if a linked list is a palindrome.
+     *
+     * @param head
+     * @return
+     */
+    public boolean checkPalindrome(Node<Integer> head) {
+        int length = 0;
+        Node tmp = head;
+        while (tmp != null) {
+            length++;
+            tmp = tmp.next;
+        }
+
+        // 想要挪动中间，也不用这么烦琐，只用一快一慢两个指针就可以了
+        int secondStart = (int) Math.ceil(length / 2d);
+        int index = 0;
+        tmp = head;
+        while (tmp != null) {
+            if (index++ == secondStart) {
+                break;
+            }
+            tmp = tmp.next;
+        }
+
+        Node<Integer> secondPart = reverseLinkedList(tmp);
+        tmp = head;
+        while(tmp.next != null && secondPart.next != null){
+            if(tmp.data != secondPart.data){
+                return false;
+            }
+            tmp = tmp.next;
+            secondPart = secondPart.next;
+        }
+
+        // 其实想实现返转完全没有那么复杂，可以借助于栈
+
+        return true;
+    }
+
+    private Node<Integer> reverseLinkedList(Node<Integer> head) {
+        Node tail = head;
+        while (tail.next != null) {
+            tail = tail.next;
+        }
+        reverse(head.next).next = head;
+        head.next = null;
+        return tail;
+    }
+
+    private Node<Integer> reverse(Node<Integer> node) {
+        if (node.next == null)
+            return node;
+
+        Node<Integer> reverseNode = reverse(node.next);
+        reverseNode.next = node;
+        return node;
+    }
+
+
+    private static void print(Node head) {
         while (head != null) {
             System.out.print(head.data + ",");
             head = head.next;
@@ -303,10 +368,13 @@ public class LinkedLists {
                 build(new Object[]{4,1,2,7,8,5,3,9}),5
         );*/
 
-        Node result = new LinkedLists().add(
-                build(new Object[]{5,9,3,4,2}),
-                build(new Object[]{9,1,0,4,3,1,6})
-        );
+        /*Node result = new LinkedLists().add(
+                build(new Object[]{5, 9, 3, 4, 2}),
+                build(new Object[]{9, 1, 0, 4, 3, 1, 6})
+        );*/
+
+        //print(new LinkedLists().reverseLinkedList(build(new Object[]{9, 1, 0, 4, 3, 1, 6})));
+        System.out.println(new LinkedLists().checkPalindrome(build(new Object[]{1,9, 1, 0, 4, 0,1,9,1})));
     }
 
 }
