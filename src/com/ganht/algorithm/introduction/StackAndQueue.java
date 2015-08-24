@@ -7,17 +7,17 @@ package com.ganht.algorithm.introduction;
 public class StackAndQueue {
 
     // 栈的实现，其实是基于单链表
-    public class Stack<T extends Comparable> implements Comparable<Stack> {
+    public static class Stack<T extends Comparable> implements Comparable<Stack> {
 
         //private Stack<T> minStack = new Stack<T>();
         private int size;
         private String name;
 
-        public Stack(String name){
+        public Stack(String name) {
             this.name = name;
         }
 
-        public Stack(){
+        public Stack() {
             this(null);
         }
 
@@ -47,6 +47,7 @@ public class StackAndQueue {
                 //    minStack.pop();
                 //}
 
+                size--;
                 return data;
             } else {
                 return null;
@@ -62,7 +63,7 @@ public class StackAndQueue {
             newNode.next = top;
             top = newNode;
 
-            size ++;
+            size++;
         }
 
         public T peek() {
@@ -147,6 +148,7 @@ public class StackAndQueue {
                 }
             }
             currStack.push(e);
+            //10.5.100.100
         }
 
         public Integer pop() {
@@ -194,25 +196,97 @@ public class StackAndQueue {
         }
 
         public void run() {
-            move(tower1, tower3, tower2,tower1.size());
+            move(tower1, tower3, tower2, tower1.size());
         }
 
-        public void move(Stack<Integer> from, Stack<Integer> to,Stack<Integer> trans, int nums) {
-            if(nums == 1){
+        public void move(Stack<Integer> from, Stack<Integer> to, Stack<Integer> trans, int nums) {
+            if (nums == 1) {
                 Integer e = from.pop();
                 to.push(e);
 
                 System.out.println("move:" + e + ",from t" + from.getName() + " to t" + to.getName());
-            }else{
-                move(from,trans,to,nums-1);
-                move(from,to,trans,1);
-                move(trans,to,from,nums - 1);
+            } else {
+                move(from, trans, to, nums - 1);
+                move(from, to, trans, 1);
+                move(trans, to, from, nums - 1);
             }
         }
     }
 
+    /**
+     * Implement a MyQueue class which implements a queue using two stacks.
+     */
+    public void queueStack() {
+        //见MyQueue class
+    }
 
-    public static void main(String[] args){
-        new StackAndQueue().towersOfHanoi(6);
+    public class MyQueue {
+
+        private Stack<Integer> stack1 = new Stack<Integer>();
+        private Stack<Integer> stack2 = new Stack<Integer>();
+
+        public MyQueue() {
+
+        }
+
+        public Integer pop() {
+            if (stack2.size() > 0) {
+                return stack2.pop();
+            } else {
+                while (stack1.size() > 0) {
+                    stack2.push(stack1.pop());
+                }
+                if (stack2.size() > 0) {
+                    return stack2.pop();
+                } else
+                    return null;
+            }
+        }
+
+        public void push(Integer e) {
+            stack1.push(e);
+        }
+    }
+
+    /**
+     * Write a program to sort a stack in ascending order (with biggest items on top).
+     * You may use at most one additional stack to hold items, but you may not copy
+     * the elements into any other data structure (such as an array). The stack
+     * supports the following operations: push, pop, peek, and isEmpty
+     */
+    public void sortStack(Stack<Integer> stack) {
+        Stack<Integer> adtStack = new Stack<Integer>();
+        int tmpE;
+        while (stack.size() > 0) {
+            tmpE = stack.pop();
+
+            if (adtStack.peek() == null) {
+                adtStack.push(tmpE);
+                continue;
+            }
+
+            while (adtStack.peek() != null && tmpE > adtStack.peek()) {
+                //tmpE = stack.pop();
+                stack.push(adtStack.pop());
+            }
+
+            adtStack.push(tmpE);
+        }
+
+        while(adtStack.size() > 0){
+            stack.push(adtStack.pop());
+        }
+    }
+
+    public static void main(String[] args) {
+        //new StackAndQueue().towersOfHanoi(6);
+        Stack<Integer> test1 = new Stack<Integer>();
+        test1.push(3);
+        test1.push(1);
+        test1.push(10);
+        test1.push(11);
+        test1.push(7);
+
+        new StackAndQueue().sortStack(test1);
     }
 }
