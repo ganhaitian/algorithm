@@ -1,9 +1,9 @@
 package com.ganht.algorithm.leetcode;
 
-import com.sun.org.apache.xerces.internal.impl.dtd.DTDGrammarBucket;
-import javafx.util.Pair;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Given an unsorted array, find the maximum difference between the
