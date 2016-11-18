@@ -67,7 +67,7 @@ public class RemoveNthNode {
     }
 
     public static void main(String[] args) {
-        ListNode a = new ListNode(1);
+        /*ListNode a = new ListNode(1);
         ListNode b = new ListNode(2);
         ListNode c = new ListNode(3);
         ListNode d = new ListNode(4);
@@ -78,7 +78,10 @@ public class RemoveNthNode {
         //c.next = d;
         //d.next = e;
 
-        ListNode n = new RemoveNthNode().removeNthFromEnd(a, 1);
+        ListNode n = new RemoveNthNode().removeNthFromEnd(a, 1);*/
+
+        String url = "http://www.baidu.com?accountsKey=asdfds112323a&param1=0";
+        url = url.replaceAll("accountsKey=\\w+","aaabbb");
     }
 }
 
