@@ -27,7 +27,7 @@ public class AdditiveNumber {
         return selectNextNum(0,0,num,-2);
     }
 
-    private boolean selectNextNum(int preNum,int preSum,String str,int op){
+    private boolean selectNextNum(long preNum,long preSum,String str,int op){
 
         int nextOp = 0;
         if(op == -2){
@@ -36,12 +36,25 @@ public class AdditiveNumber {
             nextOp = 0;
         }
 
+        boolean cantTry = false;
+        if(str.startsWith("0"))
+            cantTry = true;
+
         String tmpSelectStr;
-        int tmpSelectValue;
-        int tmpPreSum;
+        long tmpSelectValue = 0;
+        long tmpPreSum;
         for(int i = 1;i <= str.length();i ++){
+
+            if(cantTry && i >= 2)
+                break;
+
             tmpSelectStr = str.substring(0,i);
-            tmpSelectValue = Integer.parseInt(tmpSelectStr);
+
+            try {
+                tmpSelectValue = Long.parseLong(tmpSelectStr);
+            }catch(NumberFormatException e ){
+                System.out.println();
+            }
 
             if(op == 0){
                 if(tmpSelectValue < preSum)
@@ -62,6 +75,6 @@ public class AdditiveNumber {
     }
 
     public static void main(String[] args){
-        System.out.println(new AdditiveNumber().isAdditiveNumber("199100199"));
+        System.out.println(new AdditiveNumber().isAdditiveNumber("19910011992"));
     }
 }
