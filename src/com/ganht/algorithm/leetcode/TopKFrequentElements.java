@@ -64,7 +64,7 @@ public class TopKFrequentElements {
     }
 
     public static void main(String[] args){
-        new TopKFrequentElements().topKFrequent(new int[]{4,1,-1,2,-1,2,3},1);
+        System.out.println(new Date(1488522584124L));
     }
 
 }
