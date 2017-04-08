@@ -56,4 +56,47 @@ public class DeleteNodeInBst {
     public TreeNode deleteNode(TreeNode root, int key) {
         return null;
     }
+
+    private void findAndRemoveNode(TreeNode node,TreeNode parent,int target){
+        if(node.val == target){
+            if(isLeftChildNode(parent,node)){
+                if(node.left != null){
+                    parent.left = node.left;
+                    addNode(node.left,node.right);
+                }else if(node.right != null){
+                    parent.left = node.right;
+                }
+            }else{
+                if(node.left != null){
+                    parent.right = node.left;
+                    addNode(node.left,node.right);
+                }else if(node.right != null){
+                    parent.right = node.right;
+                }
+            }
+        }else if(node.val > target){
+            findAndRemoveNode(node.left,node,target);
+        }else if(node.val < target){
+            findAndRemoveNode(node.right,node,target);
+        }
+    }
+
+    private boolean isLeftChildNode(TreeNode parent,TreeNode childNode){
+        if(parent.left != null && parent.left.val == childNode.val){
+            return true;
+        }else
+            return false;
+    }
+
+    private void addNode(TreeNode root,TreeNode newNode){
+        TreeNode tmpNode = root;
+        while(true){
+            if(tmpNode.left.val < newNode.val)
+                tmpNode = tmpNode.right;
+            else
+                tmpNode = tmpNode.left;
+
+        }
+    }
+
 }
