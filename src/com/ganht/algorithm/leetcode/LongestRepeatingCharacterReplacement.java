@@ -34,8 +34,30 @@ package com.ganht.algorithm.leetcode;
  */
 public class LongestRepeatingCharacterReplacement {
 
+    /**
+     * 用个滑动窗口来解决
+     * @param s
+     * @param k
+     * @return
+     */
     public int characterReplacement(String s, int k) {
+        if (s.length() == 0) return 0;
+        int[] count = new int[26];
+        count[s.charAt(0) - 'A'] = 1;
+        int left = 0;
+        int res = 1;
+        int most = 1;
 
+        for(int right = 1;right < s.length();right++){
+            most = Math.max(++ count[s.charAt(right) - 'A'] , most);
+            if(most + k < right - left + 1){
+                count[s.charAt(left++) - 'A'] --;
+            }else{
+                res = Math.max(right - left + 1, res);
+            }
+        }
+
+        return res;
     }
 
 }
