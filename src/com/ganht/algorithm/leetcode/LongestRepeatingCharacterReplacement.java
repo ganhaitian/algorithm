@@ -35,7 +35,7 @@ package com.ganht.algorithm.leetcode;
 public class LongestRepeatingCharacterReplacement {
 
     /**
-     * 用个滑动窗口来解决
+     * 用个滑动窗口来解决。
      * @param s
      * @param k
      * @return
