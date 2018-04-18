@@ -19,6 +19,11 @@ public class HouseRobber {
 
     private Map<Integer,Integer> cache = new HashMap<>();
 
+    /**
+     * 为什么我总是想的这么的复杂
+     * @param nums
+     * @return
+     */
     public int rob(int[] nums) {
         int most = 0;
         for(int i = 0;i < nums.length;i++){
