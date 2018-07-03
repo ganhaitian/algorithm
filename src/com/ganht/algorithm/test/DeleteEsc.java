@@ -1,7 +1,5 @@
 package com.ganht.algorithm.test;
 
-import org.apache.commons.lang.StringUtils;
-
 /**
  * Created by haitian.gan on 2017/8/30.
  */
@@ -13,7 +11,7 @@ public class DeleteEsc {
    * 输出：最终的结果字符串
    * 举例：输入"abc\b\bd\b\bghi"，期望输出"ghi"
    */
-  public String deleteEsc(String input) {
+ /* public String deleteEsc(String input) {
     if (StringUtils.isEmpty(input)) {
       return null;
     }
@@ -35,6 +33,6 @@ public class DeleteEsc {
 
   public static void main(String[] args) {
 
-  }
+  }*/
 
 }
