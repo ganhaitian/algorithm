@@ -44,6 +44,7 @@ public class FlattenNestedListIterator {
     /**
      * 好像不让用额外变量的，所以暂时不能展开
      * 妈的，不让用List，可以用栈？这是什么玩意儿
+     * 这道题最关键的点，是要转换思维，意识到整理数据的事情并不是在next中做，而是在hasNext中做
      */
     public class NestedIterator implements Iterator<Integer> {
 
