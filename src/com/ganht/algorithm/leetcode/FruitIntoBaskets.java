@@ -54,6 +54,11 @@ import java.util.stream.Collectors;
  */
 public class FruitIntoBaskets {
 
+    /**
+     * leetcode上面的例题稍微优雅一点，相当于是做了两个指针
+     * @param tree
+     * @return
+     */
     public int totalFruit(int[] tree) {
         if(tree == null || tree.length <= 0){
             return 0;
