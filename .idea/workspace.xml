@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="11bf8c07-5a0c-4f97-a299-b31d54a60a54" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/ExpressiveWords.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/MyCalendarII.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/NetworkDelayTime.java" afterDir="false" />
+    <list default="true" id="11bf8c07-5a0c-4f97-a299-b31d54a60a54" name="Default" comment="fix 提交新的算法题目">
+      <change afterPath="$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/CapacityToShipPackagesWithinDDays.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/MinimumAreaRectangle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/MinimumDominoRotationsForEuqalRow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/MostStonesRemovedWithSameRowOrColumn.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/New21Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm.iml" afterDir="false" />
     </list>
@@ -31,27 +34,75 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.608742">
+    <splitter split-orientation="horizontal" split-proportion="0.49413645">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/NetworkDelayTime.java">
+            <entry file="file://$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/New21Game.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1836">
-                  <caret line="108" selection-start-line="108" selection-end-line="108" />
+                <state relative-caret-position="204">
+                  <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
                   <folding>
-                    <element signature="e#1333#1334#0" expanded="true" />
-                    <element signature="e#1370#1371#0" expanded="true" />
+                    <element signature="e#1209#1210#0" expanded="true" />
+                    <element signature="e#1233#1234#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/MostStonesRemovedWithSameRowOrColumn.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="214">
+                  <caret line="66" column="43" selection-start-line="66" selection-start-column="43" selection-end-line="66" selection-end-column="43" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/MinimumDominoRotationsForEuqalRow.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="248">
+                  <caret line="32" column="74" selection-start-line="32" selection-start-column="74" selection-end-line="32" selection-end-column="74" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/ExpressiveWords.java">
+            <entry file="file://$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/CapacityToShipPackagesWithinDDays.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="248">
-                  <caret line="18" column="33" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="33" />
+                <state relative-caret-position="359">
+                  <caret line="82" column="35" lean-forward="true" selection-start-line="82" selection-start-column="35" selection-end-line="82" selection-end-column="35" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="jar://C:/Program Files/Java/jdk-12.0.2/lib/src.zip!/java.base/java/util/PriorityQueue.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="387">
+                  <caret line="586" column="13" selection-start-line="586" selection-start-column="13" selection-end-line="586" selection-end-column="13" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="jar://C:/Program Files/Java/jdk-12.0.2/lib/src.zip!/java.base/java/lang/Comparable.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="293">
+                  <caret line="95" column="17" selection-start-line="95" selection-start-column="17" selection-end-line="95" selection-end-column="17" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="jar://C:/Program Files/Java/jdk-12.0.2/lib/src.zip!/java.base/java/util/TreeMap.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="81">
+                  <caret line="1277" column="38" selection-start-line="1277" selection-start-column="38" selection-end-line="1277" selection-end-column="38" />
                 </state>
               </provider>
             </entry>
@@ -59,8 +110,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="jar://C:/Program Files/Java/jdk-12.0.2/lib/src.zip!/java.base/java/util/HashSet.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="100">
-                  <caret line="104" column="11" selection-start-line="104" selection-start-column="11" selection-end-line="104" selection-end-column="11" />
+                <state relative-caret-position="458">
+                  <caret line="277" selection-start-line="277" selection-end-line="277" />
                   <folding>
                     <element signature="e#3757#3758#0" expanded="true" />
                     <element signature="e#3794#3795#0" expanded="true" />
@@ -70,37 +121,14 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="jar://C:/Program Files/Java/jdk-12.0.2/lib/src.zip!/java.base/java/util/Map.java">
+            <entry file="jar://C:/Program Files/Java/jdk-12.0.2/lib/src.zip!/java.base/java/util/TreeSet.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="147">
-                  <caret line="1165" column="14" selection-start-line="1165" selection-start-column="14" selection-end-line="1165" selection-end-column="14" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="jar://C:/Program Files/Java/jdk-12.0.2/lib/src.zip!/java.base/java/lang/String.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="19210">
-                  <caret line="1202" column="15" selection-start-line="1202" selection-start-column="15" selection-end-line="1202" selection-end-column="15" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/ganht/algorithm/util/tuple/FourTuple.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="204">
-                  <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/ganht/algorithm/util/tuple/FiveTuple.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="170">
-                  <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+                <state relative-caret-position="285">
+                  <caret line="253" column="19" selection-start-line="253" selection-start-column="19" selection-end-line="253" selection-end-column="19" />
+                  <folding>
+                    <element signature="e#9606#9607#0" expanded="true" />
+                    <element signature="e#9652#9653#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -115,27 +143,6 @@
                     <element signature="e#2071#2072#0" expanded="true" />
                     <element signature="e#2143#2144#0" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/WordBreak.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="170">
-                  <caret line="13" column="84" selection-start-line="13" selection-start-column="84" selection-end-line="13" selection-end-column="84" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="10438">
-                  <caret line="614" column="13" selection-start-line="614" selection-start-column="13" selection-end-line="614" selection-end-column="13" />
                 </state>
               </provider>
             </entry>
@@ -188,15 +195,24 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/AddTwoNumbers.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="478">
-                  <caret line="41" column="27" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
+                <state relative-caret-position="155">
+                  <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
                   <folding>
                     <element signature="e#517#518#0" expanded="true" />
                     <element signature="e#548#549#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/MinimumAreaRectangle.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="231">
+                  <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
                 </state>
               </provider>
             </entry>
@@ -215,6 +231,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>seq 參數錯誤，建議重登</find>
+      <find>iml</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -223,9 +240,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/ganht/algorithm/codejam/PasswordAttacker.java" />
-        <option value="$PROJECT_DIR$/src/com/ganht/algorithm/codejam/NewYearsEve.java" />
-        <option value="$PROJECT_DIR$/src/com/ganht/algorithm/codejam/CardGame.java" />
         <option value="$PROJECT_DIR$/src/com/ganht/algorithm/codejam/ParenthesesOrder.java" />
         <option value="$PROJECT_DIR$/src/com/ganht/algorithm/codejam/Minesweeper.java" />
         <option value="$PROJECT_DIR$/src/com/ganht/algorithm/codejam/BrokenCalculator.java" />
@@ -271,6 +285,12 @@
         <option value="$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/MyCalendarII.java" />
         <option value="$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/NetworkDelayTime.java" />
         <option value="$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/ExpressiveWords.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/New21Game.java" />
+        <option value="$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/MinimumAreaRectangle.java" />
+        <option value="$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/MostStonesRemovedWithSameRowOrColumn.java" />
+        <option value="$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/MinimumDominoRotationsForEuqalRow.java" />
+        <option value="$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/CapacityToShipPackagesWithinDDays.java" />
       </list>
     </option>
   </component>
@@ -287,6 +307,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -310,28 +332,12 @@
               <item name="algorithm" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="bytedance" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="algorithm" type="462c0819:PsiDirectoryNode" />
               <item name="leetcode" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="tuple" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -380,7 +386,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.ExpressiveWords">
+  <component name="RunManager" selected="Application.CapacityToShipPackagesWithinDDays">
     <configuration default="true" type="AndroidRunConfigurationType">
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
@@ -442,6 +448,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CapacityToShipPackagesWithinDDays" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.ganht.algorithm.leetcode.CapacityToShipPackagesWithinDDays" />
+      <module name="algorithm" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ganht.algorithm.leetcode.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ExpressiveWords" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.ganht.algorithm.leetcode.ExpressiveWords" />
       <module name="algorithm" />
@@ -456,22 +476,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FlipGroup" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.ganht.algorithm.bytedance.FlipGroup" />
-      <module name="algorithm" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.ganht.algorithm.bytedance.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FruitIntoBaskets" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.ganht.algorithm.leetcode.FruitIntoBaskets" />
+    <configuration name="LongestWordInDictionaryThroughDeleting" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.ganht.algorithm.leetcode.LongestWordInDictionaryThroughDeleting" />
       <module name="algorithm" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
@@ -484,8 +490,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LongestWordInDictionaryThroughDeleting" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.ganht.algorithm.leetcode.LongestWordInDictionaryThroughDeleting" />
+    <configuration name="MostStonesRemovedWithSameRowOrColumn" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.ganht.algorithm.leetcode.MostStonesRemovedWithSameRowOrColumn" />
       <module name="algorithm" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
@@ -569,19 +575,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.FruitIntoBaskets" />
-      <item itemvalue="Application.FlipGroup" />
       <item itemvalue="Application.LongestWordInDictionaryThroughDeleting" />
       <item itemvalue="Application.NetworkDelayTime" />
       <item itemvalue="Application.ExpressiveWords" />
+      <item itemvalue="Application.MostStonesRemovedWithSameRowOrColumn" />
+      <item itemvalue="Application.CapacityToShipPackagesWithinDDays" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.CapacityToShipPackagesWithinDDays" />
+        <item itemvalue="Application.MostStonesRemovedWithSameRowOrColumn" />
         <item itemvalue="Application.ExpressiveWords" />
         <item itemvalue="Application.NetworkDelayTime" />
         <item itemvalue="Application.LongestWordInDictionaryThroughDeleting" />
-        <item itemvalue="Application.FlipGroup" />
-        <item itemvalue="Application.FruitIntoBaskets" />
       </list>
     </recent_temporary>
   </component>
@@ -670,7 +676,8 @@
       <workItem from="1552999207596" duration="10312000" />
       <workItem from="1565581131892" duration="5605000" />
       <workItem from="1565666674522" duration="14250000" />
-      <workItem from="1565763052671" duration="25081000" />
+      <workItem from="1565763052671" duration="27872000" />
+      <workItem from="1566011007690" duration="33317000" />
     </task>
     <task id="LOCAL-00001" summary="密码破坏谜题提交">
       <created>1420363450833</created>
@@ -952,7 +959,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565683961355</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="fix 提交新的算法题目">
+      <created>1565931794507</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1565931794507</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -961,13 +975,12 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="547510000" />
+    <option name="totallyTimeSpent" value="583618000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="7" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.12793177" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.1913646" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -977,8 +990,8 @@
       <window_info id="Nl-Palette" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2081545" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.305794" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2081545" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.21995708" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -1037,7 +1050,8 @@
     <MESSAGE value="add FruitIntoBaskets" />
     <MESSAGE value="各种.." />
     <MESSAGE value="fix 各种提交" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix 各种提交" />
+    <MESSAGE value="fix 提交新的算法题目" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix 提交新的算法题目" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1163,6 +1177,12 @@
           <properties />
           <option name="timeStamp" value="141" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/CapacityToShipPackagesWithinDDays.java</url>
+          <line>62</line>
+          <properties />
+          <option name="timeStamp" value="146" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -1195,46 +1215,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/CompareVersionNubmers.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/TopKFrequentElements.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1088">
-          <caret line="70" selection-start-line="70" selection-end-line="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/src.zip!/java/util/Collections.java" />
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/src.zip!/java/util/ArrayList.java" />
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/src.zip!/java/lang/System.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/DeleteNodeInBst.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="990">
-          <caret line="59" column="77" selection-start-line="59" selection-start-column="77" selection-end-line="59" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/WiggleSort.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="33" column="18" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/LicenceKeyFormating.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="39" column="20" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/ArrayList.java" />
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/Collections.java" />
     <entry file="jar://D:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/Comparator.java" />
     <entry file="jar://D:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/String.java" />
     <entry file="file://$PROJECT_DIR$/piivrbwh.n55.txt">
@@ -1452,6 +1432,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/NetworkDelayTime.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1802">
+          <caret line="108" selection-start-line="108" selection-end-line="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/ExpressiveWords.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2533">
+          <caret line="149" column="11" selection-start-line="149" selection-start-column="11" selection-end-line="149" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-12.0.2/lib/src.zip!/java.base/java/util/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19363">
+          <caret line="1165" column="14" selection-start-line="1165" selection-start-column="14" selection-end-line="1165" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/ganht/algorithm/util/tuple/FiveTuple.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1471,8 +1479,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10438">
-          <caret line="614" column="13" selection-start-line="614" selection-start-column="13" selection-end-line="614" selection-end-column="13" />
+        <state relative-caret-position="10523">
+          <caret line="619" column="13" selection-start-line="619" selection-start-column="13" selection-end-line="619" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1512,39 +1520,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-12.0.2/lib/src.zip!/java.base/java/util/Map.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="1165" column="14" selection-start-line="1165" selection-start-column="14" selection-end-line="1165" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-12.0.2/lib/src.zip!/java.base/java/util/HashSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="104" column="11" selection-start-line="104" selection-start-column="11" selection-end-line="104" selection-end-column="11" />
-          <folding>
-            <element signature="e#3757#3758#0" expanded="true" />
-            <element signature="e#3794#3795#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/NetworkDelayTime.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1836">
-          <caret line="108" selection-start-line="108" selection-end-line="108" />
-          <folding>
-            <element signature="e#1333#1334#0" expanded="true" />
-            <element signature="e#1370#1371#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/AddTwoNumbers.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="478">
-          <caret line="41" column="27" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
+        <state relative-caret-position="155">
+          <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
           <folding>
             <element signature="e#517#518#0" expanded="true" />
             <element signature="e#548#549#0" expanded="true" />
@@ -1552,10 +1531,88 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/ExpressiveWords.java">
+    <entry file="jar://C:/Program Files/Java/jdk-12.0.2/lib/src.zip!/java.base/java/util/HashSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="277" selection-start-line="277" selection-end-line="277" />
+          <folding>
+            <element signature="e#3757#3758#0" expanded="true" />
+            <element signature="e#3794#3795#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-12.0.2/lib/src.zip!/java.base/java/util/TreeSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="253" column="19" selection-start-line="253" selection-start-column="19" selection-end-line="253" selection-end-column="19" />
+          <folding>
+            <element signature="e#9606#9607#0" expanded="true" />
+            <element signature="e#9652#9653#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-12.0.2/lib/src.zip!/java.base/java/util/TreeMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="1277" column="38" selection-start-line="1277" selection-start-column="38" selection-end-line="1277" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-12.0.2/lib/src.zip!/java.base/java/lang/Comparable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="95" column="17" selection-start-line="95" selection-start-column="17" selection-end-line="95" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-12.0.2/lib/src.zip!/java.base/java/util/PriorityQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="586" column="13" selection-start-line="586" selection-start-column="13" selection-end-line="586" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/MostStonesRemovedWithSameRowOrColumn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="66" column="43" selection-start-line="66" selection-start-column="43" selection-end-line="66" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/New21Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <element signature="e#1209#1210#0" expanded="true" />
+            <element signature="e#1233#1234#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/MinimumDominoRotationsForEuqalRow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="248">
-          <caret line="18" column="33" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="33" />
+          <caret line="32" column="74" selection-start-line="32" selection-start-column="74" selection-end-line="32" selection-end-column="74" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/MinimumAreaRectangle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/ganht/algorithm/leetcode/CapacityToShipPackagesWithinDDays.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="82" column="35" lean-forward="true" selection-start-line="82" selection-start-column="35" selection-end-line="82" selection-end-column="35" />
         </state>
       </provider>
     </entry>
