@@ -162,14 +162,10 @@ pip-log.txt
 # Mac crap
 .DS_Store
 
+.idea
 .idea/workspace.xml
 *.iml
 .iml
 
-.idea/workspace.xml
-
-.idea/workspace.xml
-.idea/workspace.xml
-.idea/workspace.xml
 *.xml
-.idea/workspace.xml
+
