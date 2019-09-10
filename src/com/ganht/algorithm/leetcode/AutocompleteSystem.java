@@ -1,8 +1,9 @@
 package com.ganht.algorithm.leetcode;
 
-import sun.management.HotspotClassLoadingMBean;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.PriorityQueue;
 
 /**
  * Design a search autocomplete system for a search engine. Users may input a sentence (at least one word and end with a
