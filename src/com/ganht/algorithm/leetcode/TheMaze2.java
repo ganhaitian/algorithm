@@ -1,5 +1,9 @@
 package com.ganht.algorithm.leetcode;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Stack;
+
 /**
  * There is a ball in a maze with empty spaces and walls. The ball can go through empty spaces by rolling up, down, left
  * or right, but it won't stop rolling until hitting a wall. When the ball stops, it could choose the next direction.
@@ -61,9 +65,101 @@ package com.ganht.algorithm.leetcode;
  */
 public class TheMaze2 {
 
+    private String encode(int[] array) {
+        return array[0] + "," + array[1];
+    }
+
+    private int[] decode(String str) {
+        if(str == null){
+            return null;
+        }
+
+        String[] parts = str.split(",");
+        return new int[]{Integer.parseInt(parts[0]), Integer.parseInt(parts[1])};
+    }
+
+    private int calInstance(Object[] trace){
+
+        return 0;
+    }
+
     // 其实就是用个大递归吧
     public int shortestDistance(int[][] maze, int[] start, int[] destination) {
-        return 0;
+        Set<String>   visited = new HashSet<>();
+        Stack<String> trace   = new Stack<>();
+
+        // 起点是第一个点
+        int[] ballPos = start;
+        trace.add(encode(ballPos));
+
+        int shortest = 0;
+        while (trace.size() > 0) {
+            ballPos = decode(trace.peek());
+            // 如果到了目标
+            if (ballPos[0] == destination[0] && ballPos[1] == destination[1]) {
+                int distance = calInstance(trace.toArray());
+                if (distance < shortest) {
+                    shortest = distance;
+                }
+
+                break;
+            }
+
+            int[][] direction = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+            int[]   dir       = null;
+            boolean go        = false;
+            for (int dirId = 0; dirId < direction.length; dirId++) {
+                dir = direction[dirId];
+                String dirKey = ballPos[0] + "-" + ballPos[1] + "-" + dirId;
+                if (!visited.contains(dirKey)) {
+                    visited.add(dirKey);
+                    go = true;
+                    break;
+                }
+            }
+
+            if (!go) {
+                decode(trace.pop());
+                continue;
+            }
+
+            int[] nextPos = {ballPos[0], ballPos[1]};
+            int[] lastPos;
+            while (true) {
+                lastPos = new int[]{nextPos[0], nextPos[1]};
+                nextPos[0] = nextPos[0] + dir[0];
+                nextPos[1] = nextPos[1] + dir[1];
+
+                // 撞到墙或者是边了
+                if ((nextPos[0] < 0 || nextPos[0] >= maze.length || nextPos[1] < 0 || nextPos[1] >= maze[0].length)
+                        || maze[nextPos[0]][nextPos[1]] == 1) {
+                    String lastPosStr = encode(lastPos);
+                    if (!trace.contains(lastPosStr)) {
+                        trace.add(lastPosStr);
+                    }
+
+                    break;
+                }
+            }
+
+        }
+
+        return shortest;
+    }
+
+    public static void main(String[] args) {
+        int[][] maze = {
+                {0, 0, 1, 0, 0},
+                {0, 0, 0, 0, 0},
+                {0, 0, 0, 1, 0},
+                {1, 1, 0, 1, 1},
+                {0, 0, 0, 0, 0}
+        };
+
+        int[] start       = {0, 4};
+        int[] destination = {4, 4};
+        int   result      = new TheMaze2().shortestDistance(maze, start, destination);
+        System.out.println(result);
     }
 
 }
