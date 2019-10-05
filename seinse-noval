@@ -1,0 +1,78 @@
+package com.ght.seinse.novel;
+
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
+import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+public class NovelCrawler {
+	
+	private static int TIME_OUT = 500000;
+	
+	// 本地代理
+	private Proxy proxy = new Proxy(Proxy.Type.SOCKS, new InetSocketAddress("127.0.0.1", 7070));
+	
+	private void filterIntresting(String name, String threadId) {
+		try {
+			Document doc = Jsoup.connect("http://www.sexinsex.net/bbs/" + threadId)
+					.timeout(TIME_OUT)
+					.proxy(proxy)
+					.get();
+			
+			String body = doc.text();
+			
+			Pattern p = Pattern.compile("");
+		    Matcher m = p.matcher(body);
+		    int count = 0;
+		    while (m.find()) {
+		        count++;
+		    }
+			
+		    if(count >= 10) {
+		    	System.out.println(name + ",http://www.sexinsex.net/bbs/" + threadId);
+		    }
+		    
+			/*
+			 * if(body.contains("肛") || body.contains("屁眼") || body.contains("菊花")){
+			 * System.out.println(name + ",http://www.sexinsex.net/bbs/" + threadId); }
+			 */
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void crawling() {
+		try {
+			int page = 1;
+			
+			while (true) {
+				Document doc = Jsoup.connect("http://www.sexinsex.net/bbs/forum-110-" + (page++) + ".html")
+						//Document doc = Jsoup.connect("http://www.sexinsex.net/bbs/forumdisplay.php?fid=279&filter=type&typeid=231&page=" + (page++))
+						.timeout(TIME_OUT)
+						.proxy(proxy)
+						.get();
+
+				doc.getElementsByAttributeValueContaining("id","normalthread_")
+						.stream()
+						.flatMap(ele -> ele.getElementsByAttributeValueStarting("id", "thread_").stream())
+						.map(ele -> ele.child(0))
+						.forEach(ele -> filterIntresting(ele.text(), ele.attr("href")));
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void main(String[] args) {
+		new NovelCrawler().crawling();
+	}
+
+}
