@@ -40,7 +40,7 @@ public class NovelCrawler {
 		    }
 		    
 			/*
-			 * if(body.contains("肛") || body.contains("屁眼") || body.contains("菊花")){
+			 * if(body.contains("") || body.contains("") || body.contains("")){
 			 * System.out.println(name + ",http://www.sexinsex.net/bbs/" + threadId); }
 			 */
 		} catch (Exception e) {
