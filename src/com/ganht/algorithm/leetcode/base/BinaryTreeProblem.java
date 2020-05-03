@@ -30,8 +30,13 @@ public abstract class BinaryTreeProblem {
      * @return
      */
     protected static TreeNode buildTreeFromArray(Integer[] input){
+        if(input == null){
+            return null;
+        }
+
         TreeNode[] nodes = new TreeNode[input.length];
         TreeNode root = null;
+        int leftIndex,rightIndex;
         for (int i = 0; i < input.length; i++) {
             Integer val = input[i];
             if (val == null) {
@@ -43,7 +48,7 @@ public abstract class BinaryTreeProblem {
                 root = node;
             }
 
-            int leftIndex = (i * 2) + 1;
+            leftIndex = (i * 2) + 1;
             if(leftIndex < input.length){
                 Integer leftVal = input[leftIndex];
                 if (leftVal != null) {
@@ -52,7 +57,7 @@ public abstract class BinaryTreeProblem {
                 }
             }
 
-            int rightIndex = (i * 2) + 2;
+            rightIndex = (i * 2) + 2;
             if(rightIndex < input.length){
                 Integer rightVal = input[rightIndex];
                 if (rightVal != null) {
