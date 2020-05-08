@@ -31,8 +31,37 @@ package com.ganht.algorithm.leetcode;
  */
 public class GreatestSumDivisibleByThree {
 
+    // 仔细看条件，既然要求被3整除，这个绝对不是白给的，可以在这里面做文章
     public int maxSumDivThree(int[] nums) {
-        return 0;
+        int MAX = 100000;
+        int ans = 0;
+        int m1 = MAX, mn1 = MAX;
+        int m2 = MAX, mn2 = MAX;
+
+        for (int x: nums) {
+            ans += x;
+
+            if (x % 3 == 1) {
+                if (x < m1) {
+                    mn1 = m1;
+                    m1 = x;
+                } else if (x < mn1) {
+                    mn1 = x;
+                }
+            } else if (x % 3 == 2) {
+                if (x < m2) {
+                    mn2 = m2;
+                    m2 = x;
+                } else if (x < mn2) {
+                    mn2 = x;
+                }
+            }
+        }
+
+        if (ans % 3 == 1) return ans - Math.min(m1, m2 + mn2);
+        if (ans % 3 == 2) return ans - Math.min(m1 + mn1, m2);
+
+        return ans;
     }
 
 }
