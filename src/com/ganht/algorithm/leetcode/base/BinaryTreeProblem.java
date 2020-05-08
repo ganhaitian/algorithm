@@ -1,7 +1,9 @@
 package com.ganht.algorithm.leetcode.base;
 
+import java.util.function.Function;
+
 /**
- * 二叉树类别的问题
+ * 二叉树类型的问题
  */
 public abstract class BinaryTreeProblem {
 
@@ -35,6 +37,18 @@ public abstract class BinaryTreeProblem {
         }
 
         TreeNode[] nodes = new TreeNode[input.length];
+        Function<Integer, TreeNode> initTreeNodeFunc = index -> {
+            if (index < input.length) {
+                Integer val = input[index];
+                if (val != null) {
+                    nodes[index] = new TreeNode(val);
+                    return nodes[index];
+                }
+            }
+
+            return null;
+        };
+
         TreeNode root = null;
         int leftIndex,rightIndex;
         for (int i = 0; i < input.length; i++) {
@@ -49,22 +63,10 @@ public abstract class BinaryTreeProblem {
             }
 
             leftIndex = (i * 2) + 1;
-            if(leftIndex < input.length){
-                Integer leftVal = input[leftIndex];
-                if (leftVal != null) {
-                    nodes[leftIndex] = new TreeNode(leftVal);
-                    node.left = nodes[leftIndex];
-                }
-            }
+            node.left = initTreeNodeFunc.apply(leftIndex);
 
-            rightIndex = (i * 2) + 2;
-            if(rightIndex < input.length){
-                Integer rightVal = input[rightIndex];
-                if (rightVal != null) {
-                    nodes[rightIndex] = new TreeNode(rightVal);
-                    node.right = nodes[rightIndex];
-                }
-            }
+            rightIndex = leftIndex + 1;
+            node.right = initTreeNodeFunc.apply(rightIndex);
         }
 
         return root;

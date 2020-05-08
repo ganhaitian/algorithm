@@ -31,6 +31,16 @@ package com.ganht.algorithm.leetcode;
  */
 public class GreatestSumDivisibleByThree {
 
+    /**
+     * 算法
+     * (贪心，数学) O(n)O(n)
+     * 首先求出所有数字的和，求和过程中，记录下数字模 3 余 1 的最小值和次小值，以及模 3 余 2 的最小值和次小值。
+     * 如果求出的总和模 3 余 1，我们可以去掉一个模 3 余 1 的数字或者两个模 3 余 2 的数字，二者取最小去掉。
+     * 如果求出的总和模 3 余 2，我们可以去掉两个模 3 余 1 的数字或者一个模 3 余 2 的数字，二者取最小去掉。
+     * 如果求出的总和能被 3 整除，则直接返回。
+     * @param nums
+     * @return
+     */
     // 仔细看条件，既然要求被3整除，这个绝对不是白给的，可以在这里面做文章
     public int maxSumDivThree(int[] nums) {
         int MAX = 100000;
