@@ -2,7 +2,7 @@ package com.ganht.algorithm.leetcode;
 
 import com.ganht.algorithm.leetcode.base.BinaryTreeProblem;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * Given a binary tree, return the vertical order traversal of its nodes' values. (ie, from top to bottom, column by column).
@@ -78,8 +78,49 @@ import java.util.List;
  */
 public class BinaryTreeVerticalOrderTraversal extends BinaryTreeProblem {
 
+    private HashMap<Integer, TreeMap<Integer,List<Integer>>> cache = new HashMap<>();
+    private int maxIndex;
+
+    // 用bfs有个优点，不用考虑lvl上面的排序问题了，因为它本身就是一层一层下去的
     public List<List<Integer>> verticalOrder(TreeNode root) {
-        return null;
+        traverse(root, 1, 0);
+
+        List<List<Integer>> result = new ArrayList<>();
+        for(int i = maxIndex;;i--){
+            TreeMap<Integer,List<Integer>> map = cache.get(i);
+            if(map == null){
+                break;
+            }
+
+            List<Integer> colNums = new ArrayList<>();
+            for(Map.Entry<Integer,List<Integer>> entry : map.entrySet()){
+                colNums.addAll(entry.getValue());
+            }
+
+            result.add(colNums);
+        }
+
+        return result;
+    }
+
+    private void traverse(TreeNode node,int lvl,int index){
+        if(node == null){
+            return;
+        }
+
+        cache.computeIfAbsent(index, k -> new TreeMap<>()).computeIfAbsent(lvl, k -> new ArrayList<>()).add(node.val);
+        if(maxIndex < index){
+            this.maxIndex = index;
+        }
+
+        int newLvl = lvl + 1;
+        traverse(node.left, newLvl, index + 1);
+        traverse(node.right, newLvl, index - 1);
+    }
+
+    public static void main(String[] args){
+        Integer[] nums = {3,9,8,4,0,1,7,null,null,null,2,5};
+        System.out.println(new BinaryTreeVerticalOrderTraversal().verticalOrder(buildTreeFromArray(nums)));
     }
 
 }
