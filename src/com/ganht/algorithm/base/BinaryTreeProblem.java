@@ -1,4 +1,4 @@
-package com.ganht.algorithm.leetcode.base;
+package com.ganht.algorithm.base;
 
 import java.util.function.Function;
 
