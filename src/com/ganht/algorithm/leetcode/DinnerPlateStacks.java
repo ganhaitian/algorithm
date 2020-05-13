@@ -1,5 +1,10 @@
 package com.ganht.algorithm.leetcode;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.PriorityQueue;
+import java.util.TreeSet;
+
 /**
  * You have an infinite number of stacks arranged in a row and numbered (left to right) from 0, each of the stacks has
  * the same maximum capacity.
@@ -66,20 +71,102 @@ package com.ganht.algorithm.leetcode;
  */
 public class DinnerPlateStacks {
 
-    public DinnerPlateStacks(int capacity) {
+    private final int capacity;
 
+    private final ArrayList<LinkedList<Integer>> stacks        = new ArrayList<>();
+    private final TreeSet<Integer>               leftMostQueue = new TreeSet<>(Integer::compare);
+    private       int                            rightMost;
+
+    // 这个题吧，其实也没啥，就是耗时间，起初想用堆，唉，完全没有必要，直接用treeset就好
+    public DinnerPlateStacks(int capacity) {
+        this.capacity = capacity;
+        this.initStack();
+    }
+
+    private void initStack(){
+        LinkedList<Integer> stack = new LinkedList<>();
+        stacks.add(stack);
+        leftMostQueue.add(0);
     }
 
     public void push(int val) {
+        Integer leftMostIndex = leftMostQueue.first();
+        LinkedList<Integer> stack = stacks.get(leftMostIndex);
+        if (stack == null || stack.size() >= this.capacity) {
+            LinkedList<Integer> newStack = new LinkedList<>();
+            newStack.add(val);
+            stacks.add(newStack);
 
+            leftMostQueue.remove(leftMostIndex);
+            leftMostQueue.add(stacks.size() - 1);
+
+            rightMost = stacks.size() - 1;
+        } else {
+            stack.push(val);
+            if(stack.size() >= this.capacity){
+                leftMostQueue.remove(leftMostIndex);
+                if(leftMostQueue.size() == 0){
+                    leftMostQueue.add(stacks.size() - 1);
+                    rightMost = stacks.size() - 1;
+                }
+            }
+        }
     }
 
     public int pop() {
-        return 1;
+        while (rightMost >= 0 && stacks.get(rightMost).size() <= 0) {
+            rightMost--;
+        }
+        return popAtStack(rightMost);
     }
 
     public int popAtStack(int index) {
-        return -1;
+        if (index < 0 || index >= stacks.size()) {
+            return -1;
+        }
+
+        LinkedList<Integer> stack = stacks.get(index);
+        if (stack == null || stack.size() == 0) {
+            return -1;
+        }
+
+        int val = stack.pop();
+        leftMostQueue.add(index);
+
+        /*if (stack.size() == 0) {
+            if (stacks.size() == 0) {
+                this.initStack();
+            }
+        } else {
+
+        }*/
+
+        System.out.println(val);
+        return val;
+    }
+
+    public static void main(String[] args) {
+        DinnerPlateStacks D = new DinnerPlateStacks(1);  // Initialize with capacity = 2
+        D.push(1);
+        D.push(2);
+        D.popAtStack(0);
+        D.popAtStack(0);
+        D.push(3);
+        D.popAtStack(0);
+
+        D.push(4);
+        D.push(5);
+
+        D.popAtStack(0);   // Returns 2.  The stacks are now:     4
+        D.push(20);        // The stacks are now: 20  4
+        D.push(21);        // The stacks are now: 20  4 21
+        D.popAtStack(0);   // Returns 20.  The stacks are now:     4 21
+        D.popAtStack(2);   // Returns 21.  The stacks are now:     4
+        D.pop();            // Returns 5.  The stacks are now:      4
+        D.pop();            // Returns 4.  The stacks are now:   1  3
+        D.pop();           // Returns 3.  The stacks are now:   1
+        D.pop();            // Returns 1.  There are no stacks.
+        D.pop();
     }
 
 }
