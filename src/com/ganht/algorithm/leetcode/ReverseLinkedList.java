@@ -1,6 +1,6 @@
 package com.ganht.algorithm.leetcode;
 
-import com.ganht.algorithm.leetcode.base.BaseLinkedListProblem;
+import com.ganht.algorithm.base.BaseLinkedListProblem;
 
 /**
  * Reverse a singly linked list.

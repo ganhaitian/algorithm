@@ -1,7 +1,7 @@
 package com.ganht.algorithm.leetcode;
 
 
-import com.ganht.algorithm.leetcode.base.BinaryTreeProblem;
+import com.ganht.algorithm.base.BinaryTreeProblem;
 
 /**
  * Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).

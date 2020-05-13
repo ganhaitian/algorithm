@@ -1,6 +1,6 @@
 package com.ganht.algorithm.leetcode;
 
-import com.ganht.algorithm.leetcode.base.BaseLinkedListProblem;
+import com.ganht.algorithm.base.BaseLinkedListProblem;
 
 /**
  * Write a program to find the node at which the intersection of two singly linked lists begins.

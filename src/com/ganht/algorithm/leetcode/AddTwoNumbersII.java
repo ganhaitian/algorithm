@@ -1,6 +1,6 @@
 package com.ganht.algorithm.leetcode;
 
-import com.ganht.algorithm.leetcode.base.BaseLinkedListProblem;
+import com.ganht.algorithm.base.BaseLinkedListProblem;
 
 /**
  * You are given two non-empty linked lists representing two non-negative integers. The most significant digit comes first

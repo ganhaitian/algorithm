@@ -1,6 +1,6 @@
 package com.ganht.algorithm.leetcode;
 
-import com.ganht.algorithm.leetcode.base.BinaryTreeProblem;
+import com.ganht.algorithm.base.BinaryTreeProblem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
