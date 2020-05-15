@@ -29,7 +29,6 @@ public class Tree {
     }
 
     public int getLongestPath(Node node, Integer[] param) {
-
         if (node == null)
             return -1;
 
@@ -46,12 +45,10 @@ public class Tree {
             param[0] = maxDistance;
         }
 
-        int pathLength = Math.max(leftLongestPath, rightLongestPath);
-        return pathLength;
+        return Math.max(leftLongestPath, rightLongestPath);
     }
 
     public static void main(String[] args) {
-
         Node top = new Node();
         top.id = 0;
         Node _1 = new Node();
