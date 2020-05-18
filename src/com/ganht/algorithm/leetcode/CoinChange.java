@@ -39,6 +39,29 @@ public class CoinChange {
         return doChange(coins, amount, 0);
     }
 
+    /**
+     * 优雅的动态规划，其实就是逐步通过局部最优解堆出来最终的解
+     * public class Solution {
+     *   public int coinChange(int[] coins, int amount) {
+     *     int max = amount + 1;
+     *     int[] dp = new int[amount + 1];
+     *     Arrays.fill(dp, max);
+     *     dp[0] = 0;
+     *     for (int i = 1; i <= amount; i++) {
+     *       for (int j = 0; j < coins.length; j++) {
+     *         if (coins[j] <= i) {
+     *           dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
+     *         }
+     *       }
+     *     }
+     *     return dp[amount] > amount ? -1 : dp[amount];
+     *   }
+     * }
+     * @param coins
+     * @param amount
+     * @param times
+     * @return
+     */
     private int doChange(int[] coins, int amount, int times) {
         if (amount == 0) {
             return 0;
