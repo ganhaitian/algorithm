@@ -1,5 +1,7 @@
 package com.ganht.algorithm.leetcode;
 
+import java.util.*;
+
 /**
  * Given a chemical formula (given as a string), return the count of each atom.
  *
@@ -45,8 +47,110 @@ package com.ganht.algorithm.leetcode;
  */
 public class NumberOfAtoms {
 
+    public String countOfAtoms1(String formula) {
+        int                         N     = formula.length();
+        Stack<Map<String, Integer>> stack = new Stack<>();
+        stack.push(new TreeMap<>());
+
+        for (int i = 0; i < N;) {
+            if (formula.charAt(i) == '(') {
+                stack.push(new TreeMap<>());
+                i++;
+            } else if (formula.charAt(i) == ')') {
+                Map<String, Integer> top = stack.pop();
+                int iStart = ++i, multiplicity = 1;
+                while (i < N && Character.isDigit(formula.charAt(i))) i++;
+                if (i > iStart) multiplicity = Integer.parseInt(formula.substring(iStart, i));
+                for (String c: top.keySet()) {
+                    int v = top.get(c);
+                    stack.peek().put(c, stack.peek().getOrDefault(c, 0) + v * multiplicity);
+                }
+            } else {
+                int iStart = i++;
+                while (i < N && Character.isLowerCase(formula.charAt(i))) i++;
+                String name = formula.substring(iStart, i);
+                iStart = i;
+                while (i < N && Character.isDigit(formula.charAt(i))) i++;
+                int multiplicity = i > iStart ? Integer.parseInt(formula.substring(iStart, i)) : 1;
+                stack.peek().put(name, stack.peek().getOrDefault(name, 0) + multiplicity);
+            }
+        }
+
+        StringBuilder ans = new StringBuilder();
+        for (String name: stack.peek().keySet()) {
+            ans.append(name);
+            int multiplicity = stack.peek().get(name);
+            if (multiplicity > 1) ans.append("" + multiplicity);
+        }
+        return new String(ans);
+    }
+
     public String countOfAtoms(String formula) {
-        return null;
+        formula = formula + "\r";
+        Deque<Map<String,Integer>> stack = new LinkedList<>();
+        // 初始化根
+        Map<String, Integer> rootMap = new TreeMap<>();
+        stack.push(rootMap);
+
+        Map<String, Integer> readyPop = null;
+        int tmpNum = 0;
+        StringBuilder ele = new StringBuilder();
+        for(char c : formula.toCharArray()){
+            Map<String, Integer> currMap = stack.peek();
+            if(c == '('){
+                Map<String,Integer> sub = new TreeMap<>();
+                stack.push(sub);
+            }
+
+            if(c == ')'){
+                readyPop = stack.pop();
+            }
+
+            if(Character.isDigit(c)){
+                tmpNum = tmpNum * 10 + (c - '0');
+            } else if (Character.isUpperCase(c) || c == '\r' || c == '(' || c == ')') {
+                int multiple = tmpNum == 0 ? 1 : tmpNum;
+                if (readyPop != null) {
+                    readyPop.replaceAll((k, v) -> {
+                        int val = v * multiple;
+                        currMap.compute(k, (_k,_v) -> {
+                            if( _v == null){
+                                return 1;
+                            }else{
+                                return _v + val;
+                            }
+                        });
+                        return val;
+                    });
+                }else{
+                    if(ele.length() > 0){
+                        currMap.compute(ele.toString(), (k,v) -> v == null ? multiple : v + multiple);
+                    }
+                }
+
+                ele = new StringBuilder();
+                if(c != '(' && c != ')')
+                    ele.append(c);
+
+                tmpNum = 0;
+            }else if(Character.isLowerCase(c)){
+                ele.append(c);
+            }
+        }
+
+        StringBuilder result = new StringBuilder();
+        rootMap.forEach((k,v) ->{
+            result.append(k);
+            if(v > 1){
+                result.append(v);
+            }
+        });
+
+        return result.toString();
+    }
+
+    public static void main(String[] args){
+        new NumberOfAtoms().countOfAtoms("Mg(OH)2");
     }
 
 }
