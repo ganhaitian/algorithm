@@ -7,12 +7,25 @@ import java.util.*;
 /**
  * Remove the minimum number of invalid parentheses in order to make the input string valid. Return all possible results.
  * Note: The input string may contain letters other than the parentheses ( and ).
+ *
+ * Example 1:
+ *
+ * Input: "()())()"
+ * Output: ["()()()", "(())()"]
+ * Example 2:
+ *
+ * Input: "(a)())()"
+ * Output: ["(a)()()", "(a())()"]
+ * Example 3:
+ *
+ * Input: ")("
+ * Output: [""]
  * Created by lenovo on 2016/7/13.
  */
 public class RemoveInvalidParentheses {
 
+    // 二刷，感觉这个方案比leetcode上面给的要清晰明了
     public List<String> removeInvalidParentheses(String s) {
-
         List<String> result = new ArrayList<String>();
 
         Queue<String> q = new LinkedList<String>();
@@ -58,7 +71,6 @@ public class RemoveInvalidParentheses {
     }
 
     private boolean isValid(String s){
-
         int sum = 0;
         for(int i =0;i < s.length();i++){
             if(s.charAt(i) == '(')
