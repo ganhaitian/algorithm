@@ -50,6 +50,30 @@ public class MaximumProductSubarray {
         return Math.max(tmpSum, preSum);
     }
 
+    // 二刷此题
+    public int maxProduct2(int[] nums) {
+        int[] maxTillNow = new int[nums.length];
+        int[] minTillNow = new int[nums.length];
+
+        maxTillNow[0] = Math.max(0, nums[0]);
+        minTillNow[0] = Math.min(0, nums[0]);
+
+        int result = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] > 0) {
+                maxTillNow[i] = Math.max(nums[i], maxTillNow[i - 1] * nums[i]);
+                minTillNow[i] = Math.min(0, minTillNow[i - 1] * nums[i]);
+            } else {
+                maxTillNow[i] = Math.max(0, minTillNow[i - 1] * nums[i]);
+                minTillNow[i] = Math.min(maxTillNow[i - 1] * nums[i], nums[i]);
+            }
+
+            result = Math.max(result, Math.max(minTillNow[i], maxTillNow[i]));
+        }
+
+        return result;
+    }
+
     /**
      * 这个思路非常之巧妙
      * class Solution {
