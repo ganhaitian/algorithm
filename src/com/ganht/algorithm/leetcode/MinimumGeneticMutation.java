@@ -3,6 +3,8 @@ package com.ganht.algorithm.leetcode;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
+
 
 /**
  * A gene string can be represented by an 8-character long string, with choices from "A","C","G","T".
@@ -40,22 +42,22 @@ public class MinimumGeneticMutation {
 
     public class Gene {
 
-        private String str;
-        private List<Gene> mutations = new ArrayList<>();
-        private boolean touched;
-        private Gene last;
+        private final String     str;
+        private final List<Gene> mutations = new ArrayList<>();
+        private       boolean    touched;
+        private       Gene       last;
 
         private Gene(String str) {
             this.str = str;
         }
 
-        private void addMutatioin(Gene gene) {
+        private void addMutation(Gene gene) {
             this.mutations.add(gene);
         }
 
         @Override
         public boolean equals(Object target) {
-            if (target == null || !(target instanceof Gene))
+            if (!(target instanceof Gene))
                 return false;
 
             Gene _t = (Gene) target;
@@ -74,19 +76,17 @@ public class MinimumGeneticMutation {
 
     // 建立一个图的结构，每个结点中存储着基因突变的相关结点。
     // 图建立好后，从end一个结点倒溯到start结点的最少步数就是结果
+    // 这他妈做的是bfs呀，咋和注解说的不一样 2020-06-09
     public int minMutation(String start, String end, String[] bank) {
-        List<Gene> genes = Arrays.stream(bank)
-                .map(s -> new Gene(s))
-                .collect(Collectors.toList());
-
-        Gene startGene = new Gene(start);
-        Gene endGene = new Gene(end);
+        var genes     = Arrays.stream(bank).map(Gene::new).collect(toList());
+        var startGene = new Gene(start);
+        var endGene   = new Gene(end);
 
         if (!genes.contains(startGene))
             genes.add(startGene);
-        else{
+        else {
             // 将原来的替换掉
-            genes.set(genes.indexOf(startGene),startGene);
+            genes.set(genes.indexOf(startGene), startGene);
         }
 
         if (!genes.contains(endGene)) {
@@ -94,26 +94,26 @@ public class MinimumGeneticMutation {
         }
 
         for (int i = 0; i < genes.size(); i++) {
-            Gene baseGene = genes.get(i);
+            var baseGene = genes.get(i);
             for (int j = i + 1; j < genes.size(); j++) {
-                Gene gene = genes.get(j);
+                var gene = genes.get(j);
                 if (isMutated(baseGene.str, gene.str)) {
-                    baseGene.addMutatioin(gene);
-                    gene.addMutatioin(baseGene);
+                    baseGene.addMutation(gene);
+                    gene.addMutation(baseGene);
                 }
             }
         }
 
-        Queue<Gene> tmpQueue = new LinkedList<>();
+        var tmpQueue = new LinkedList<Gene>();
         tmpQueue.offer(startGene);
 
         boolean found = false;
         while (tmpQueue.size() > 0) {
-            Gene tmpGene = tmpQueue.poll();
+            var tmpGene = tmpQueue.poll();
             tmpGene.touched = true;
             if (tmpGene.equals(endGene)) {
                 endGene.last = tmpGene.last;
-                found = true;
+                found        = true;
                 break;
             } else {
                 tmpGene.mutations.forEach(gene -> {
@@ -130,7 +130,7 @@ public class MinimumGeneticMutation {
             return -1;
 
         int result = 0;
-        Gene tmp = endGene.last;
+        var tmp    = endGene.last;
         while (tmp != null) {
             tmp = tmp.last;
             result++;
@@ -158,5 +158,7 @@ public class MinimumGeneticMutation {
 
         return mutatedNums == 1;
     }
+
+    // 二刷，我的思路是构造一张图出来，然后从和start差1mutation的结点开始做dfs
 
 }
