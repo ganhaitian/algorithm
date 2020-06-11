@@ -40,7 +40,7 @@ import static java.util.stream.Collectors.toList;
  */
 public class MinimumGeneticMutation {
 
-    public class Gene {
+    public static class Gene {
 
         private final String     str;
         private final List<Gene> mutations = new ArrayList<>();
