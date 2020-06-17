@@ -1,30 +1,74 @@
 package com.ganht.algorithm.leetcode;
 
+import com.ganht.algorithm.base.BaseLinkedListProblem;
+
 /**
- * Given a linked list, remove the nth node from the end of list and return its head.
- * <p>
- * For example,
- * <p>
+ * Given a linked list, remove the n-th node from the end of list and return its head.
+ *
+ * Example:
+ *
  * Given linked list: 1->2->3->4->5, and n = 2.
- * <p>
+ *
  * After removing the second node from the end, the linked list becomes 1->2->3->5.
  * Note:
+ *
  * Given n will always be valid.
- * Try to do this in one pass.
- * <p>
- * Subscribe to see which companies asked this question
- * <p>
+ *
+ * Follow up:
+ *
+ * Could you do this in one pass?
  * Created by 17ZY-HPYKFD2 on 2016/11/4.
  */
-public class RemoveNthNode {
+public class RemoveNthNode extends BaseLinkedListProblem {
 
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
+    /**
+     * 他这个挺好的，弄两个指针相当于，一起往后走
+     * public ListNode removeNthFromEnd(ListNode head, int n) {
+     *     ListNode dummy = new ListNode(0);
+     *     dummy.next = head;
+     *     ListNode first = dummy;
+     *     ListNode second = dummy;
+     *     // Advances first pointer so that the gap between first and second is n nodes apart
+     *     for (int i = 1; i <= n + 1; i++) {
+     *         first = first.next;
+     *     }
+     *     // Move first to the end, maintaining the gap
+     *     while (first != null) {
+     *         first = first.next;
+     *         second = second.next;
+     *     }
+     *     second.next = second.next.next;
+     *     return dummy.next;
+     * }
+     * @param head
+     * @param n
+     * @return
+     */
+    // 二刷
+    public ListNode removeNthFromEnd2(ListNode head, int n){
+        if(head == null){
+            return null;
         }
+
+        int no = iterate(head, n);
+        if(no == n){
+            return head.next;
+        }
+
+        return head;
+    }
+
+    public int iterate(ListNode node, int n) {
+        if (node == null) {
+            return 0;
+        }
+
+        int pos = iterate(node.next, n) + 1;
+        if (pos == n + 1) {
+            node.next = node.next.next;
+        }
+
+        return pos;
     }
 
     // 先是寻找链接的倒数第n个结点
@@ -51,37 +95,24 @@ public class RemoveNthNode {
 
         cursor1.next = cursor1.next.next;
         return top.next;
-//        ListNode top = new ListNode(0);
-//        top.next = head;
-//
-//        int count = 1;
-//        ListNode prev = top;
-//        while (count < n) {
-//            prev = prev.next;
-//            count++;
-//        }
-//
-//        prev.next = prev.next.next;
-//        return top.next;
-
     }
 
     public static void main(String[] args) {
-        /*ListNode a = new ListNode(1);
+        ListNode a = new ListNode(1);
         ListNode b = new ListNode(2);
         ListNode c = new ListNode(3);
         ListNode d = new ListNode(4);
         ListNode e = new ListNode(5);
 
-        //a.next = b;
-        //b.next = c;
-        //c.next = d;
-        //d.next = e;
+        a.next = b;
+        b.next = c;
+        c.next = d;
+        d.next = e;
 
-        ListNode n = new RemoveNthNode().removeNthFromEnd(a, 1);*/
+        ListNode n = new RemoveNthNode().removeNthFromEnd2(a, 5);
 
-        String url = "http://www.baidu.com?accountsKey=asdfds112323a&param1=0";
-        url = url.replaceAll("accountsKey=\\w+","aaabbb");
+        //String url = "http://www.baidu.com?accountsKey=asdfds112323a&param1=0";
+        //url = url.replaceAll("accountsKey=\\w+","aaabbb");
     }
 }
 
