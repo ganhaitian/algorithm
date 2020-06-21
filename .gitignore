@@ -164,6 +164,7 @@ pip-log.txt
 
 .idea
 .idea/workspace.xml
+.idea/*
 *.iml
 .iml
 
