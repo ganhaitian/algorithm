@@ -50,8 +50,10 @@ public class KthSmallestInLexicographicalOrder {
                 k -= 1;
             }
         }
+
         return curr;
     }
+
     //use long in case of overflow
     public int calSteps(int n, long n1, long n2) {
         int steps = 0;
@@ -64,7 +66,88 @@ public class KthSmallestInLexicographicalOrder {
     }
 
     public static void main(String[] ags){
-        System.out.println(new KthSmallestInLexicographicalOrder().findKthNumber(51274,1000));
+        new Solution().ReplaceUnderlines("^(\\_)");
+    }
+    
+    public static class Solution {
+        /**
+         * 替换自定字符串中的下划线为指定字符串
+         * "^((^|$|[ ,+])9494)"
+
+         * @param regularString string字符串 输入的正则表达式字符串
+         * @return string字符串
+         */
+        public String ReplaceUnderlines (String regularString) {
+            // write code here
+        	int count = 0;
+        	char last = '\0';
+        	StringBuilder result = new StringBuilder();
+        	for(int i = 0;i < regularString.length();i++) {
+        		char c = regularString.charAt(i);
+        		if(c == '_' && last != '\\' && count <= 0) {
+        			result.append("(^|$|[ ,+])");
+        		}else {
+        			result.append(c);
+        			if(c == '[') {
+        				count ++;
+        			}else if(c == ']') {
+        				count --;
+        			}
+        		}
+        		
+        		last = c;
+        	}
+        	
+        	return result.toString();
+        }
+    }
+    
+    //1#2#3$4
+    //1#2#3 14#3 41
+    //1#17	
+    //7#6$5#12
+    private static void transfer(String input) {
+    	List<Integer> numList = new ArrayList<>();
+    	int lastPos = -1;
+    	char lastOp = '\0';
+    	int firstDPos = -1;
+    	for(int i = 0;i <= input.length();i++) {
+    		char c = i >= input.length() ? '#' : input.charAt(i);
+    		if(c == '#') {
+    			if(lastOp == '#' || lastOp == '\0') {
+    				numList.add(Integer.parseInt(input.substring(lastPos + 1, i)));
+    			}else if(lastOp == '$') {
+    				numList.add(calSub(input.substring(firstDPos, i)));
+    				firstDPos = -1;
+    			}
+    			lastPos = i;
+    			lastOp = c;
+    		}else if(c == '$') {
+    			if(firstDPos == -1) {
+    				firstDPos = lastPos + 1;
+    			}
+    			
+    			lastOp = c;
+    		}
+    	}
+    	
+    	int result = numList.get(0);
+    	for(int i = 1;i < numList.size();i++) {
+    		result = 2 * result + 3 * numList.get(i) + 4;
+    	}
+    	
+    	System.out.println(result);
+    }
+    
+    private static int calSub(String input) {
+    	String[] nums = input.split("\\$");
+    	int result = Integer.parseInt(nums[0]);
+    	for(int i = 1;i < nums.length;i++) {
+    		int curr = Integer.parseInt(nums[i]);
+    		result = 3 * result + curr + 2;
+    	}
+    	
+    	return result;
     }
 
 }
