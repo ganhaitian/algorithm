@@ -70,7 +70,7 @@ public class _3Sum {
         	}
         }
         
-        return sum;
+        return 0;
     } 
     
     private static int calculate(int D, int[] buildings, int start, int level){
