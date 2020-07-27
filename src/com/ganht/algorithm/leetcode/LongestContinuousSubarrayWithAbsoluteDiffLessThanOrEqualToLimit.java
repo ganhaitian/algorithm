@@ -1,5 +1,9 @@
 package com.ganht.algorithm.leetcode;
 
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * Given an array of integers nums and an integer limit, return the size of the longest non-empty subarray such that the
  * absolute difference between any two elements of this subarray is less than or equal to limit.
@@ -42,7 +46,28 @@ package com.ganht.algorithm.leetcode;
 public class LongestContinuousSubarrayWithAbsoluteDiffLessThanOrEqualToLimit {
 
     public int longestSubarray(int[] nums, int limit) {
+        if (nums == null || nums.length <= 0) {
+            return 0;
+        }
+
+        int curr_max = nums[0]; // 当子数组下最大值 这里初始化为第一个数
+        int curr_min = nums[0]; // 当子数组下最大值 这里初始化为第一个数
+        var sub_nums = new LinkedList<Integer>();
+        for (int num : nums) {
+            if (Math.abs(num - curr_max) <= limit && Math.abs(num - curr_min) <= limit && Math.abs(curr_max - curr_min) <= limit) {
+                curr_max = Math.max(num, curr_max);
+                curr_min = Math.min(num, curr_min);
+                sub_nums.offer(num);
+            } else {
+                sub_nums.offer(num);
+                sub_nums.poll();
+                curr_max = Collections.max(sub_nums); // 当子数组最大值
+                curr_min = Collections.min(sub_nums); // 当前子数组最小值
+            }
+        }
+
         return -1;
+
     }
 
 }
