@@ -15,11 +15,12 @@ import org.jsoup.select.Elements;
 public class NovelCrawler {
 	
 	private static int TIME_OUT = 500000;
+	private static int FILTER_LIMIT = 10;
 	
 	// 本地代理
 	private Proxy proxy = new Proxy(Proxy.Type.SOCKS, new InetSocketAddress("127.0.0.1", 7070));
 	
-	private void filterIntresting(String name, String threadId) {
+	private void filterInteresting(String name, String threadId) {
 		try {
 			Document doc = Jsoup.connect("http://www.sexinsex.net/bbs/" + threadId)
 					.timeout(TIME_OUT)
@@ -32,11 +33,10 @@ public class NovelCrawler {
 		    Matcher m = p.matcher(body);
 		    int count = 0;
 		    while (m.find()) {
-		        count++;
-		    }
-			
-		    if(count >= 10) {
-		    	System.out.println(name + ",http://www.sexinsex.net/bbs/" + threadId);
+		        if( ++ count >= FILTER_LIMIT){
+		            System.out.println(name + ",http://www.sexinsex.net/bbs/" + threadId);
+		            break;
+		        }
 		    }
 		    
 			/*
