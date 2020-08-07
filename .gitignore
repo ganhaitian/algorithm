@@ -167,6 +167,7 @@ pip-log.txt
 .idea/*
 *.iml
 .iml
+target
 
 *.xml
 
