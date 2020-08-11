@@ -78,7 +78,7 @@ public class TimeNeededToInformAllEmployees {
     private Map<Integer, List<Integer>> levelMap = new HashMap<>();
 
     private int[] informTime;
-    private int   needTime = Integer.MAX_VALUE;
+    private int   needTime;
 
     public int numOfMinutes(int n, int headID, int[] manager, int[] informTime) {
         this.informTime = informTime;
@@ -93,7 +93,7 @@ public class TimeNeededToInformAllEmployees {
     private void dfs(int m, int accTime) {
         int time = this.informTime[m];
         if (time == 0) {
-            if (accTime < needTime) {
+            if (accTime > needTime) {
                 this.needTime = accTime;
             }
 
@@ -106,9 +106,9 @@ public class TimeNeededToInformAllEmployees {
     }
 
     public static void main(String[] args) {
-        int[] manager    = {3, 3, -1, 2};
-        int[] informTime = {0, 0, 162, 914};
-        System.out.println(new TimeNeededToInformAllEmployees().numOfMinutes(4, 2, manager, informTime));
+        int[] manager    = {-1, 5, 0, 6, 7, 0, 0, 0};
+        int[] informTime = {89, 0, 0, 0, 0, 523, 241, 519};
+        System.out.println(new TimeNeededToInformAllEmployees().numOfMinutes(8, 0, manager, informTime));
     }
 
 }
